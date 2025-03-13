@@ -40,6 +40,7 @@
 .card-home{
     color: #000;
     margin-bottom: 20px;
+    margin-right: 20px;
 }
 
 .card-home h2{
@@ -51,4 +52,50 @@
     height: 256px;
     margin-top: 20px;
     background-color: #f2f2f2;
+}
+
+@media (max-width: 1024px) {
+    .row {
+        flex-direction: column; /* Apila los elementos verticalmente */
+    }
+
+    .izquierda,
+    .derecha {
+        width: 100%; /* Ocupa todo el ancho en pantallas pequeñas */
+    }
+
+    .derecha {
+        margin-top: 20px; /* Añade espacio entre las secciones */
+    }
+
+    .image-container {
+        height: 400px; /* Reduce el alto de la imagen */
+    }
+}
+
+@media (max-width: 768px) {
+    .image-container {
+        height: 300px; /* Reduce aún más el alto de la imagen */
+    }
+
+    .certificacion {
+        width: 200px; /* Reduce el tamaño de las certificaciones */
+        height: 200px;
+    }
+}
+
+/* Pantallas menores a 480px */
+@media (max-width: 480px) {
+    .image-container {
+        height: 200px; /* Alto mínimo para la imagen */
+    }
+
+    .card-home {
+        margin-bottom: 15px; /* Reduce el margen inferior */
+    }
+
+    .certificacion {
+        width: 150px; /* Tamaño más pequeño para certificaciones */
+        height: 150px;
+    }
 }

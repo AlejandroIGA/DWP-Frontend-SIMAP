@@ -9,10 +9,10 @@ function Certifications(props) {
         <LandingLayout
             nav={<NavBar></NavBar>}
             content={
-                <>
+                <div style={{margin:"0", padding:"0"}}>
                     <h2>Certificaciones</h2>
                     <div>
-                        <div className='info-card'>
+                        <div className='test'>
                             <div className='info-image'>
 
                             </div>
@@ -29,7 +29,7 @@ function Certifications(props) {
                                 </p>
                             </div>
                         </div>
-                        <div className='info-card'>
+                        <div className='test'>
                             <div className='info-image'>
 
                             </div>
@@ -48,7 +48,7 @@ function Certifications(props) {
                         </div>
                         
                     </div>
-                </>
+                </div>
 
             }
             footer={<Footer></Footer>}

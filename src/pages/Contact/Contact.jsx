@@ -21,7 +21,7 @@ function Contact(props) {
                 </p>
                 <div className='info-card'>
                     <div className='image'>
-                    <MailOutlined style={{fontSize:"64px"}}/>
+                    <MailOutlined style={{fontSize:"64px", color:"#000"}}/>
                     </div>
                     <div className='data'>
                         <p>Correo:</p>
@@ -30,7 +30,7 @@ function Contact(props) {
                 </div>
                 <div className='info-card'>
                     <div className='image'>
-                    <PhoneOutlined style={{fontSize:"64px"}} rotate={90}/>
+                    <PhoneOutlined style={{fontSize:"64px",  color:"#000"}} rotate={90}/>
                     </div>
                     <div className='data'>
                         <p>Teléfono:</p>

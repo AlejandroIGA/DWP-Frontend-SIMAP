@@ -1,22 +1,63 @@
-.info-card{
+/* Estilos base */
+.test{
     display: flex;
-    direction: row;
+    flex-direction: row; /* Corregido: usa flex-direction en lugar de direction */
     width: 100%;
     color: #000;
-    align-items: top;
+    align-items: flex-start; /* Corregido: usa flex-start en lugar de top */
     margin-bottom: 20px;
     margin-left: 20px;
+    margin-right: 20px;
 }
 
-.info-image{
+.info-image {
     width: 256px;
     background-color: #f2f2f2;
     height: 256px;
+    flex-shrink: 0; /* Evita que la imagen se reduzca */
 }
 
-.info-data{
+.info-data {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: calc(100% - 276px); /* Ajusta el ancho restando el ancho de la imagen y el margen */
     margin-left: 20px;
+}
+
+/* Media Queries para responsividad */
+
+/* Pantallas menores a 768px */
+@media (max-width: 768px) {
+    .test {
+        flex-direction: column; /* Apila los elementos verticalmente */
+        margin-left: 0; /* Elimina el margen izquierdo */
+        margin-right: 0; /* Elimina el margen derecho */
+        align-items: center; /* Centra los elementos */
+    }
+
+    .info-image {
+        width: 100%; /* Ocupa todo el ancho en pantallas pequeñas */
+        height: 200px; /* Reduce la altura de la imagen */
+        margin-bottom: 10px; /* Añade espacio entre la imagen y el texto */
+    }
+
+    .info-data {
+        width: 100%; /* Ocupa todo el ancho en pantallas pequeñas */
+        margin-left: 0; /* Elimina el margen izquierdo */
+    }
+}
+
+/* Pantallas menores a 480px */
+@media (max-width: 480px) {
+    .info-image {
+        height: 150px; /* Reduce aún más la altura de la imagen */
+    }
+
+    .info-data h3 {
+        font-size: 1.2rem; /* Reduce el tamaño del título */
+    }
+
+    .info-data p {
+        font-size: 0.9rem; /* Reduce el tamaño del texto */
+    }
 }

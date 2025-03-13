@@ -1,30 +1,33 @@
-.footer{
+.footer {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     background-color: #387478;
     padding: 20px;
     color: #fff;
-    height: 120px;
+    height: auto; /* Cambia a altura automática para adaptarse al contenido */
     width: 100%;
     margin-top: 20px;
 }
 
-.links{
+.links {
     width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: left; /* Centra los enlaces */
 }
 
-.links p{
+.links p {
     color: #fff;
     margin: 0;
     padding: 0;
 }
 
-.links a{
+.links a {
     text-decoration: none;
 }
 
-.icons-container{
+.icons-container {
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -33,13 +36,55 @@
     justify-content: center;
 }
 
-.icons-container p{
+.icons-container p {
     color: #fff;
 }
 
-.icons{
+.icons {
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+
+/* Media Queries para responsividad */
+
+/* Pantallas menores a 768px */
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column; /* Apila los elementos verticalmente */
+        align-items: center; /* Centra los elementos */
+        padding: 10px; /* Reduce el padding */
+    }
+
+    .links,
+    .icons-container {
+        width: 100%; /* Ocupa todo el ancho en pantallas pequeñas */
+        text-align: center; /* Centra el texto */
+    }
+
+    .icons {
+        margin-top: 10px; /* Añade espacio entre los íconos y el texto */
+    }
+
+    .icons-container p {
+        margin-bottom: 10px; /* Añade espacio entre el texto y los íconos */
+    }
+
+    .icons-container .anticon {
+        font-size: 48px; /* Reduce el tamaño de los íconos */
+        margin-right: 10px; /* Reduce el margen entre íconos */
+    }
+}
+
+/* Pantallas menores a 480px */
+@media (max-width: 480px) {
+    .footer {
+        padding: 5px; /* Reduce aún más el padding */
+    }
+
+    .icons-container .anticon {
+        font-size: 36px; /* Reduce aún más el tamaño de los íconos */
+        margin-right: 5px; /* Reduce el margen entre íconos */
+    }
 }
