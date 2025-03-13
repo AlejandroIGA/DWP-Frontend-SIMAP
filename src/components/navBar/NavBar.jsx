@@ -49,7 +49,7 @@ function NavBar(props) {
                     </Menu>
                 </div>
                 <div>
-                    <Link to="/login" style={{ color: "#FFF" }}>
+                    <Link to="/ingresar" style={{ color: "#FFF" }}>
                     <UserOutlined style={{fontSize: "16px"}}/>
                     </Link>
                 </div>
