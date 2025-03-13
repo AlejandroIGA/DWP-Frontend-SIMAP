@@ -14,7 +14,7 @@ function NavBar(props) {
         {
             key: index + 1,
             label: tabName,
-            url: `/panel/${tabName.toLowerCase()}`
+            url: `/${tabName.toLowerCase()}`
         }
     ))
 
