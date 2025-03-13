@@ -1,0 +1,54 @@
+.row{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+.izquierda{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.derecha{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.derecha h2{
+    color: #000;
+}
+
+.image-container{
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+}
+
+.image-container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-home{
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.card-home h2{
+    color: #000;
+}
+
+.certificacion{
+    width: 256px;
+    height: 256px;
+    margin-top: 20px;
+    background-color: #f2f2f2;
+}
