@@ -51,10 +51,9 @@ function DeviceModal({ isModalOpen, setIsModalOpen, onSubmit, deviceToEdit, setD
                         label="Nombre"
                         name="name"
                         rules={[
-                            {
-                                required: true,
-                                message: 'Ingrese un nombre para el dispositivo'
-                            }
+                            { required: true, message: 'Ingrese un nombre para el dispositivo' },
+                            { min: 5, message: 'El nombre debe tener al menos 3 caracteres' },
+                            { max: 20, message: 'El nombre no puede superar los 50 caracteres' },
                         ]}
                     >
                         <Input/>
@@ -84,10 +83,8 @@ function DeviceModal({ isModalOpen, setIsModalOpen, onSubmit, deviceToEdit, setD
                         label="Valor mínimo"
                         name="min"
                         rules={[
-                            {
-                                required: true,
-                                message: 'Ingrese un valor mínimo de operación'
-                            }
+                            {required: true, message: 'Ingrese un valor mínimo de operación'},
+                            { pattern: /^[0-9]+$/, message: 'Solo se permiten números' },
                         ]}
                     >
                         <Input/>
@@ -96,10 +93,8 @@ function DeviceModal({ isModalOpen, setIsModalOpen, onSubmit, deviceToEdit, setD
                         label="Valor máximo"
                         name="max"
                         rules={[
-                            {
-                                required: true,
-                                message: 'Ingrese un valor máximo de operación'
-                            }
+                            { required: true,message: 'Ingrese un valor máximo de operación'},
+                            { pattern: /^[0-9]+$/, message: 'Solo se permiten números' },
                         ]}
                     >
                         <Input/>

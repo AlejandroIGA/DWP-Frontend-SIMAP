@@ -1,0 +1,28 @@
+.header-content{
+    display: 	flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    background-color: #387478;
+    color: #fff;
+    height: 60px;
+    width: 100%;
+}
+
+/* Estilos para el menú desplegable en modo responsivo */
+.ant-menu-submenu-popup {
+    background-color: #387478 !important; /* Fondo del menú desplegable */
+}
+
+.ant-menu-submenu-popup .ant-menu-item {
+    background-color: #387478 !important; /* Fondo de cada elemento del menú */
+    color: #fff !important; /* Color del texto */
+}
+
+.ant-menu-submenu-popup .ant-menu-item:hover {
+    background-color: #2a5a5d !important; /* Color de fondo al hacer hover */
+}
+
+.ant-menu-submenu-popup .ant-menu-item-selected {
+    background-color: #2a5a5d !important; /* Color de fondo del elemento seleccionado */
+}

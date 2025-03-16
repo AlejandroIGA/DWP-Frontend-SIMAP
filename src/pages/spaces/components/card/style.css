@@ -6,24 +6,64 @@
     border-radius: 10px;
     padding-left: 20px;
     margin-bottom: 20px;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
 }
 
 .top{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+}
+.name {
+    font-size: 24px; /* Tamaño de fuente para el nombre */
+    margin: 0; /* Elimina el margen predeterminado */
 }
 
-.button{
+.crops {
+    font-size: 18px; /* Tamaño de fuente para los cultivos */
+    margin: 10px 0 0 0; /* Ajusta el margen */
+}
+
+.button {
+    background-color: #fff;
+    border: none; /* Elimina el borde del botón */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    padding: 5px; /* Añade un poco de padding */
+    margin-right: 15px;
+    margin-left: 0px;
+}
+
+.button:hover {
     background-color: #fff;
 }
 
-.button button:hover{
+.button:active {
     background-color: #fff;
-    border: none;
 }
 
-.button button:active{
-    background-color: #fff;
-    border: none;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card {
+        margin-left: 10px;
+        margin-right: 10px;
+        padding: 15px; /* Reduce el padding en pantallas pequeñas */
+    }
+
+    .name {
+        font-size: 20px; /* Reduce el tamaño de la fuente en pantallas pequeñas */
+    }
+
+    .crops {
+        font-size: 16px; /* Reduce el tamaño de la fuente en pantallas pequeñas */
+    }
+
+    .top {
+        flex-direction: column; /* Cambia la dirección a columna en pantallas pequeñas */
+        align-items: flex-start; /* Alinea los elementos a la izquierda */
+    }
+
+    .button {
+        margin: 0;
+    }
 }

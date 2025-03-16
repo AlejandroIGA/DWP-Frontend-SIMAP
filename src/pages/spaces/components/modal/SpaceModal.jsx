@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Modal, Button, Form, Input, Select } from 'antd';
 
 function SpaceModal({ isModalOpen, setIsModalOpen, onSubmit, spaceToEdit, setSpaceToEdit }) {
@@ -44,10 +44,9 @@ function SpaceModal({ isModalOpen, setIsModalOpen, onSubmit, spaceToEdit, setSpa
                         label="Nombre"
                         name="name"
                         rules={[
-                            {
-                                required: true,
-                                message: 'Ingrese un nombre para el espacio'
-                            }
+                                { required: true, message: 'Ingrese un nombre para el espacio' },
+                                { min: 3, message: 'El nombre debe tener al menos 5 caracteres' },
+                                { max: 50, message: 'El nombre no puede superar los 20 caracteres' },
                         ]}
                     >
                         <Input />
