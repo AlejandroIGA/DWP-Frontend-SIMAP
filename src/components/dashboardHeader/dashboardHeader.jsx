@@ -1,18 +1,18 @@
 import { Col, Row } from 'antd';
 import React from 'react';
 import { LogoutOutlined } from '@ant-design/icons';
-import './style.css'
-import sun from '../../assets/sun.png'
-import humidityIcon from '../../assets/humidity.png'
-import precipitationIcon from '../../assets/precipitation.png'
+import './style.css';
+import sun from '../../assets/sun.png';
+import humidityIcon from '../../assets/humidity.png';
+import precipitationIcon from '../../assets/precipitation.png';
 
 function DashboardHeader({ temperature = "0.0", humidity = "0.0", precipitation = "0.0" }) {
     return (
-        <Row className='container'>
-            <Col span={4} className='logo'>
+        <Row className='header-dashboard'>
+            <Col xs={24} sm={24} md={4} lg={4} xl={4} className='logo'>
                 <h2>SIMAP</h2>
             </Col>
-            <Col span={16} className='metrics'>
+            <Col xs={24} sm={24} md={16} lg={16} xl={16} className='metrics'>
                 <div className='metric'>
                     <img src={sun} alt="sun"></img><p>{temperature}°C</p>
                 </div>
@@ -23,7 +23,7 @@ function DashboardHeader({ temperature = "0.0", humidity = "0.0", precipitation 
                     <img src={precipitationIcon} alt="sun"></img><p>{precipitation}%</p>
                 </div>
             </Col>
-            <Col span={4} className='exit'>
+            <Col xs={24} sm={24} md={4} lg={4} xl={4} className='exit'>
                 <a><LogoutOutlined /></a>
             </Col>
         </Row>

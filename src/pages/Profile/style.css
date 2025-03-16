@@ -1,0 +1,24 @@
+.profile{
+    color: #000;
+    margin-left: 25px;
+}
+
+.profile strong{
+    font-size: 16px;
+}
+
+.floating-button {
+    position: fixed; /* Hace que el botón sea flotante */
+    bottom: 20px; /* Distancia desde la parte inferior */
+    right: 40px; /* Distancia desde la parte derecha */
+    z-index: 1000; /* Asegura que el botón esté por encima de otros elementos */
+    background-color: #387478;
+}
+
+.floating-button button:hover{
+    background-color: red;
+}
+
+button:active{
+    background-color: #387478;
+}

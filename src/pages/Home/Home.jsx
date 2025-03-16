@@ -14,7 +14,7 @@ function Home(props) {
                 <div className='image-container'>
                     <img src={homeImg}></img>
                 </div>
-                <div className='row'>
+                <div className='row' style={{margin:"0", padding:"0"}}>
                     <div className='izquierda'>
                         <div className='card-home'>
                             <h2>¿Quienes Somos?</h2>

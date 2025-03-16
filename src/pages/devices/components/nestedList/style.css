@@ -1,11 +1,12 @@
-.list-button{
+.list-button {
     color: #000;
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 }
-.row{
+
+.row {
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -18,13 +19,13 @@ p {
     transition: background-color 0.3s ease;
 }
 
-.left{
+.left {
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 
-.right{
+.right {
     color: #387478;
     display: flex;
     align-items: center;
@@ -32,6 +33,32 @@ p {
     justify-content: center;
 }
 
-button{
+button {
     margin-left: 60px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .left {
+        flex-direction: column; /* Cambia la dirección a columna en pantallas pequeñas */
+        align-items: flex-start; /* Alinea los elementos a la izquierda */
+    }
+
+    .right {
+        font-size: 24px; /* Reduce el tamaño de la fuente en pantallas pequeñas */
+    }
+
+    button {
+        margin-left: 0; /* Elimina el margen izquierdo en pantallas pequeñas */
+        margin-top: 10px; /* Añade un margen superior a los botones */
+    }
+
+    .row {
+        padding-left: 10px; /* Reduce el padding en pantallas pequeñas */
+        padding-right: 10px;
+    }
+
+    p {
+        font-size: 14px; /* Reduce el tamaño de la fuente en pantallas pequeñas */
+    }
 }
