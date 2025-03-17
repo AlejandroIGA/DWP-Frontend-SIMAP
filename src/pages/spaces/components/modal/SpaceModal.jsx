@@ -7,8 +7,8 @@ function SpaceModal({ isModalOpen, setIsModalOpen, onSubmit, spaceToEdit, setSpa
     const handleOk = () => {
         form.validateFields().then(values => {
             setIsModalOpen(false);
-            setSpaceToEdit(null);
             onSubmit(values);
+            setSpaceToEdit(null);
             form.resetFields();
         }).catch(errorInfo => {
             console.log('Validación fallida:', errorInfo);
@@ -24,7 +24,8 @@ function SpaceModal({ isModalOpen, setIsModalOpen, onSubmit, spaceToEdit, setSpa
     useEffect(() => {
         if (spaceToEdit) {
             form.setFieldsValue({
-                name: spaceToEdit.name
+                name: spaceToEdit.name,
+                id: spaceToEdit.id
             });
         }
     }, [spaceToEdit])
@@ -50,6 +51,12 @@ function SpaceModal({ isModalOpen, setIsModalOpen, onSubmit, spaceToEdit, setSpa
                         ]}
                     >
                         <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label="id"
+                        name="id"
+                        hidden="true"
+                    >
                     </Form.Item>
                 </Form>
 

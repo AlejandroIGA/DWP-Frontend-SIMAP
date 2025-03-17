@@ -4,6 +4,7 @@ import SideBar from '../../components/sideBar/sideBar';
 import DashboardHeader from '../../components/dashboardHeader/dashboardHeader';
 import Card from './components/card/Card';
 import SpaceModal from './components/modal/SpaceModal';
+import spaceService from '../../services/spaceService';
 
 function Spaces(props) {
 
@@ -11,6 +12,8 @@ function Spaces(props) {
     const [user, setUser] = useState();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [spaceToEdit, setSpaceToEdit] = useState(null);
+
+    let response = null;
 
     let spaceTest = [{
         name: "Area 1",
@@ -24,10 +27,20 @@ function Spaces(props) {
     }]
 
     async function getSpaces(user) {
+        
     }
 
     async function handleSubmit(data) {
-        console.log("HandleSubmit", data)
+        if(spaceToEdit == null){
+            response = await spaceService.add(data.name);
+        }else{
+            response = await spaceService.update(data.name, data.id);
+        }
+        if(typeof response == "string"){
+            console.log(response)
+        }else{
+            console.log(typeof response,response.data, response.msg);
+        }
     }
 
     function handleEdit(device) {

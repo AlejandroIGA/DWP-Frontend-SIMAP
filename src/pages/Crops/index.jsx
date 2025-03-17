@@ -16,6 +16,7 @@ function Crops(props) {
     const [cropToEdit, setCropToEdit] = useState(null);
 
     let cropTest = [{
+        name: "cultivo 1",
         crop: "Jitomate",
         tempMin: 25,
         tempMax: 35,
@@ -27,6 +28,7 @@ function Crops(props) {
         id: 1
     },
     {
+        name: "cultivo 2",
         crop: "Lechuga",
         tempMin: 25,
         tempMax: 35,
@@ -86,6 +88,7 @@ function Crops(props) {
                                 {crops.map((crop, index) => (
                                     <NestedList
                                         key={index}
+                                        name={crop.name}
                                         crop={crop.crop}
                                         tempMin={crop.tempMin}
                                         tempMax={crop.tempMax}

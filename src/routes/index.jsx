@@ -1,3 +1,4 @@
+// src/routes/AppRoutes.js
 import React from 'react';
 import { useRoutes } from 'react-router-dom';
 import Devices from '../pages/devices';
@@ -12,24 +13,30 @@ import Crops from '../pages/Crops';
 import Notifications from '../pages/Notifications';
 import Profile from '../pages/Profile';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
+import ProtectedRoute from './ProtectedRoutes'; // Asegúrate de que la ruta de importación sea correcta
 
 const AppRoutes = () => {
     let routes = useRoutes([
-        {path:'/', element:<Home></Home> },
-        {path:'/servicios', element:<ServicesPage></ServicesPage>},
-        {path:'/contacto', element:<Contact></Contact>},
-        {path:'/ingresar', element:<Login></Login>},
-        {path:'/registrarse',element:<Register></Register>},
-        {path: '/certificaciones', element:<Certifications></Certifications>},
-        {path: '/panel/dispositivos', element:<Devices></Devices>},
-        {path:'/panel/espacios', element:<Spaces></Spaces>},
-        {path: "/panel/cultivos", element: <Crops></Crops>},
-        {path: "/panel/notificaciones", element:<Notifications></Notifications>},
-        {path: "/panel/cuenta", element: <Profile></Profile>},
-        {path: "/error", element:<ErrorPage></ErrorPage>}
+        { path: '*', element: <ErrorPage /> },
+        { path: '/', element: <Home /> },
+        { path: '/servicios', element: <ServicesPage /> },
+        { path: '/contacto', element: <Contact /> },
+        { path: '/ingresar', element: <Login /> },
+        { path: '/registrarse', element: <Register /> },
+        { path: '/certificaciones', element: <Certifications /> },
+        {
+            element: <ProtectedRoute />, // Protege todas las rutas dentro de este bloque
+            children: [
+                { path: '/panel/dispositivos', element: <Devices /> },
+                { path: '/panel/espacios', element: <Spaces /> },
+                { path: '/panel/cultivos', element: <Crops /> },
+                { path: '/panel/notificaciones', element: <Notifications /> },
+                { path: '/panel/cuenta', element: <Profile /> },
+            ],
+        },
     ]);
-    
+
     return routes;
-}
+};
 
 export default AppRoutes;

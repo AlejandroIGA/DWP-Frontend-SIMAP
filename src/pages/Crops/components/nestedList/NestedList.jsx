@@ -9,7 +9,7 @@ import './style.css'
 import { Col, Row } from 'antd';
 
 
-function NestedList({ crop, tempMin, tempMax,humMin, humMax, humFmin, humFmax, type, space, onEdit, onDelete }) {
+function NestedList({ name, crop, tempMin, tempMax,humMin, humMax, humFmin, humFmax, type, space, onEdit, onDelete }) {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
@@ -22,7 +22,7 @@ function NestedList({ crop, tempMin, tempMax,humMin, humMax, humFmin, humFmax, t
     >
       <Row>
         <Col span={20} className='left'>
-          <h2>{crop}</h2>
+          <h2>{name}</h2>
           <button onClick={onEdit} style={{ backgroundColor: "#fff" }} ><EditFilled style={{ color: "#048be9", fontSize: "25px" }} /></button>
           <button onClick={onDelete} style={{ backgroundColor: "#fff" }}><DeleteFilled style={{ color: "#ec1515", fontSize: "25px" }} /></button>
         </Col>
@@ -38,6 +38,7 @@ function NestedList({ crop, tempMin, tempMax,humMin, humMax, humFmin, humFmax, t
       <Collapse in={open} timeout="auto" unmountOnExit>
         <Row className='row'>
           <Col span={24}>
+            <p>Cultivo: {crop}</p>
             <p>Espacio: {space} </p>
             <p>Humedad ambiente mínima: {humMin} % </p>
             <p>Humedad ambiente máxima: {humMax} %</p>

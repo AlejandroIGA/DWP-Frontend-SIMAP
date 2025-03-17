@@ -1,13 +1,13 @@
 import api from './apiDashboard'
 
-const spaceService = {
+const cropService = {
     get: async (id) => {
         try {
-            const response = await api.get("/spaces", { params: { id } })
-            console.log("Response GET /spaces")
+            const response = await api.get("/crops", { params: id });
+            console.log("Response GET/crops", response.msg);
             return response.data;
         } catch (error) {
-            console.log("Error GET /spaces", error)
+            console.log("ERROR GET/crops", error);
             if (error.response) {
                 return error.response.data;
             } else {
@@ -15,13 +15,13 @@ const spaceService = {
             }
         }
     },
-    add: async (name) => {
+    add: async (name, crop, tempMin, tempMax, humMin, humMax, humFmin, humFmax, type, space) => {
         try {
-            const response = await api.post("/spaces", { name });
-            console.log("Response POST /spaces")
+            const response = await api.post("/crops", { name, crop, tempMin, tempMax, humMin, humMax, humFmin, humFmax, type, space });
+            console.log("Response POST /crops", response.msg);
             return response.data;
         } catch (error) {
-            console.log("ERROR POST /spaces", error);
+            console.log("ERROR POST /crops", error);
             if (error.response) {
                 return error.response.data;
             } else {
@@ -31,11 +31,11 @@ const spaceService = {
     },
     delete: async (id) => {
         try {
-            const response = await api.delete("/spaces", { params: { id } });
-            console.log("Response DELETE /spaces")
+            const response = await api.delete("/crops", { param: id });
+            console.log("Response DELETE /crops", response.msg);
             return response.data;
         } catch (error) {
-            console.log("ERROR DELETE /spaces", error);
+            console.log("ERROR DELETE /crops", error);
             if (error.response) {
                 return error.response.data;
             } else {
@@ -43,13 +43,13 @@ const spaceService = {
             }
         }
     },
-    update: async (name, id) => {
+    update: async (name, crop, tempMin, tempMax, humMin, humMax, humFmin, humFmax, type, space, id) => {
         try {
-            const response = await api.put("/spaces", { name, id });
-            console.log("Reponse UPDATE /sapaces")
+            const response = await api.put("/crops", { name, crop, tempMin, tempMax, humMin, humMax, humFmin, humFmax, type, space, id })
+            console.log("Response UPDATE /crops", response.msg);
             return response.data;
         } catch (error) {
-            console.log("ERROR UPDATE /spaces", error);
+            console.log("ERROR UPDATE /crops", error);
             if (error.response) {
                 return error.response.data;
             } else {
@@ -59,4 +59,4 @@ const spaceService = {
     }
 }
 
-export default spaceService
+export default cropService;

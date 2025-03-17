@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './style.css'
 import { Modal, Button, Form, Input, Select, InputNumber } from 'antd';
+import { CropTwoTone } from '@mui/icons-material';
 
-function CropModal({ isModalOpen, setIsModalOpen, onSubmit, cropToEdit, setCropToEdit, user}) {
+function CropModal({ isModalOpen, setIsModalOpen, onSubmit, cropToEdit, setCropToEdit, user }) {
     const [form] = Form.useForm();
 
     const handleOk = () => {
@@ -23,8 +24,9 @@ function CropModal({ isModalOpen, setIsModalOpen, onSubmit, cropToEdit, setCropT
     }
 
     useEffect(() => {
-        if(cropToEdit){
+        if (cropToEdit) {
             form.setFieldsValue({
+                name: cropToEdit.name,
                 crop: cropToEdit.crop,
                 tempMin: cropToEdit.tempMin,
                 tempMax: cropToEdit.tempMax,
@@ -52,15 +54,24 @@ function CropModal({ isModalOpen, setIsModalOpen, onSubmit, cropToEdit, setCropT
             >
                 <Form form={form}>
                     <Form.Item
-                        label="Cultivo"
-                        name="crop"
+                        label="Nombre"
+                        name="name"
                         rules={[
-                            { required: true, message: 'Ingrese el cultivo' },
+                            { required: true, message: 'Ingrese un nombre' },
                             { min: 5, message: 'Debe tener al menos 3 caracteres' },
                             { max: 30, message: 'No puede superar los 30 caracteres' },
                         ]}
                     >
-                        <Input/>
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label="Cultivo"
+                        name="crop"
+                        rules={[
+                            { required: true, message: 'Ingrese el cultivo' },
+                        ]}
+                    >
+                        <Input />
                     </Form.Item>
                     <Form.Item label="Espacio" name="space">
                         <Select>
@@ -71,11 +82,11 @@ function CropModal({ isModalOpen, setIsModalOpen, onSubmit, cropToEdit, setCropT
                         label="Humead ambiente mínima"
                         name="humMin"
                         rules={[
-                            {required: true, message: 'Ingrese un valor mínimo'},
+                            { required: true, message: 'Ingrese un valor mínimo' },
                         ]}
                     >
                         <InputNumber
-                            style={{width:"100%"}}
+                            style={{ width: "100%" }}
                             min="-100"
                             max="100"
                             step="0.00"
@@ -86,11 +97,11 @@ function CropModal({ isModalOpen, setIsModalOpen, onSubmit, cropToEdit, setCropT
                         label="Humead ambiente máxima"
                         name="humMax"
                         rules={[
-                            { required: true,message: 'Ingrese un valor máximo'},
+                            { required: true, message: 'Ingrese un valor máximo' },
                         ]}
                     >
                         <InputNumber
-                            style={{width:"100%"}}
+                            style={{ width: "100%" }}
                             min="-100"
                             max="100"
                             step="0.00"
@@ -101,11 +112,11 @@ function CropModal({ isModalOpen, setIsModalOpen, onSubmit, cropToEdit, setCropT
                         label="Humead suelo mínima"
                         name="humFmin"
                         rules={[
-                            {required: true, message: 'Ingrese un valor mínimo'},
+                            { required: true, message: 'Ingrese un valor mínimo' },
                         ]}
                     >
                         <InputNumber
-                            style={{width:"100%"}}
+                            style={{ width: "100%" }}
                             min="-100"
                             max="100"
                             step="0.00"
@@ -116,11 +127,11 @@ function CropModal({ isModalOpen, setIsModalOpen, onSubmit, cropToEdit, setCropT
                         label="Humead suelo máxima"
                         name="humFmax"
                         rules={[
-                            { required: true,message: 'Ingrese un valor máximo'},
+                            { required: true, message: 'Ingrese un valor máximo' },
                         ]}
                     >
                         <InputNumber
-                            style={{width:"100%"}}
+                            style={{ width: "100%" }}
                             min="-100"
                             max="100"
                             step="0.00"
@@ -131,11 +142,11 @@ function CropModal({ isModalOpen, setIsModalOpen, onSubmit, cropToEdit, setCropT
                         label="Temperatura ambiente mínima"
                         name="tempMin"
                         rules={[
-                            { required: true,message: 'Ingrese un valor mínimo'},
+                            { required: true, message: 'Ingrese un valor mínimo' },
                         ]}
                     >
                         <InputNumber
-                            style={{width:"100%"}}
+                            style={{ width: "100%" }}
                             min="-100"
                             max="100"
                             step="0.00"
@@ -146,11 +157,11 @@ function CropModal({ isModalOpen, setIsModalOpen, onSubmit, cropToEdit, setCropT
                         label="Temperatura ambiente maxíma"
                         name="tempMin"
                         rules={[
-                            { required: true,message: 'Ingrese un valor máximo'},
+                            { required: true, message: 'Ingrese un valor máximo' },
                         ]}
                     >
                         <InputNumber
-                            style={{width:"100%"}}
+                            style={{ width: "100%" }}
                             min="-100"
                             max="100"
                             step="0.00"
