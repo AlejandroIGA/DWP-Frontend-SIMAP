@@ -54,6 +54,11 @@ function CropModal({ isModalOpen, setIsModalOpen, onSubmit, cropToEdit, setCropT
             >
                 <Form form={form}>
                     <Form.Item
+                        label="id"
+                        name="id"
+                    >
+                    </Form.Item>
+                    <Form.Item
                         label="Nombre"
                         name="name"
                         rules={[

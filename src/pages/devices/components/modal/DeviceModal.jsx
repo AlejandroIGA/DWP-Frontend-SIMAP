@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './style.css'
 import { Modal, Button, Form, Input, Select } from 'antd';
 
-function DeviceModal({ isModalOpen, setIsModalOpen, onSubmit, deviceToEdit, setDeviceToEdit, user}) {
+function DeviceModal({ isModalOpen, setIsModalOpen, onSubmit, deviceToEdit, setDeviceToEdit, user }) {
     const [form] = Form.useForm();
 
     const handleOk = () => {
@@ -23,7 +23,7 @@ function DeviceModal({ isModalOpen, setIsModalOpen, onSubmit, deviceToEdit, setD
     }
 
     useEffect(() => {
-        if(deviceToEdit){
+        if (deviceToEdit) {
             form.setFieldsValue({
                 name: deviceToEdit.name,
                 min: deviceToEdit.min,
@@ -48,6 +48,11 @@ function DeviceModal({ isModalOpen, setIsModalOpen, onSubmit, deviceToEdit, setD
             >
                 <Form form={form}>
                     <Form.Item
+                        label="id"
+                        name="id"
+                    >
+                    </Form.Item>
+                    <Form.Item
                         label="Nombre"
                         name="name"
                         rules={[
@@ -56,25 +61,25 @@ function DeviceModal({ isModalOpen, setIsModalOpen, onSubmit, deviceToEdit, setD
                             { max: 20, message: 'El nombre no puede superar los 50 caracteres' },
                         ]}
                     >
-                        <Input/>
+                        <Input />
                     </Form.Item>
                     <Form.Item label="Tipo" name="type" rules={[
-                            {
-                                required: true,
-                                message: 'Seleccione un tipo de dispositivo'
-                            }
-                        ]}>
+                        {
+                            required: true,
+                            message: 'Seleccione un tipo de dispositivo'
+                        }
+                    ]}>
                         <Select>
                             <Select.Option value="Temperatura">Temperatura</Select.Option>
                             <Select.Option value="Humedad">Humedad</Select.Option>
                         </Select>
                     </Form.Item>
                     <Form.Item label="Cultivo" name="crop" rules={[
-                            {
-                                required: true,
-                                message: 'Seleccione un cultivo'
-                            }
-                        ]}>
+                        {
+                            required: true,
+                            message: 'Seleccione un cultivo'
+                        }
+                    ]}>
                         <Select>
                             <Select.Option value="demo">Demo</Select.Option>
                         </Select>
@@ -83,21 +88,21 @@ function DeviceModal({ isModalOpen, setIsModalOpen, onSubmit, deviceToEdit, setD
                         label="Valor mínimo"
                         name="min"
                         rules={[
-                            {required: true, message: 'Ingrese un valor mínimo de operación'},
+                            { required: true, message: 'Ingrese un valor mínimo de operación' },
                             { pattern: /^[0-9]+$/, message: 'Solo se permiten números' },
                         ]}
                     >
-                        <Input/>
+                        <Input />
                     </Form.Item>
                     <Form.Item
                         label="Valor máximo"
                         name="max"
                         rules={[
-                            { required: true,message: 'Ingrese un valor máximo de operación'},
+                            { required: true, message: 'Ingrese un valor máximo de operación' },
                             { pattern: /^[0-9]+$/, message: 'Solo se permiten números' },
                         ]}
                     >
-                        <Input/>
+                        <Input />
                     </Form.Item>
                 </Form>
 

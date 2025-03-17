@@ -29,6 +29,7 @@ function ProfileModal({ isModalOpen, setIsModalOpen, onSubmit, accountToEdit, se
                 city: accountToEdit.city,
                 country: accountToEdit.country,
                 email: accountToEdit.email,
+                id: accountToEdit.id,
             });
         }
     }, [accountToEdit])
@@ -44,6 +45,11 @@ function ProfileModal({ isModalOpen, setIsModalOpen, onSubmit, accountToEdit, se
                 ]}
             >
                 <Form form={form}>
+                    <Form.Item
+                        label="id"
+                        name="id"
+                    >
+                    </Form.Item>
                     <Form.Item
                         name="name"
                         rules={[
