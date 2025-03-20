@@ -9,37 +9,47 @@ import spaceService from '../../services/spaceService';
 function Spaces(props) {
 
     const [spaces, setSpaces] = useState([]);
-    const [user, setUser] = useState();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [spaceToEdit, setSpaceToEdit] = useState(null);
+    const [msg, setMsg] = useState('');
 
     let response = null;
+    let user_id = 85;
 
-    let spaceTest = [{
-        name: "Area 1",
-        members: 2,
-        id: 1
-    },
-    {
-        name: "Area 2",
-        members: 0,
-        id: 2
-    }]
-
-    async function getSpaces(user) {
-        
+    async function getSpaces(user_id) {
+        response = await spaceService.get(user_id);
+        if (typeof response == "string"){
+            setMsg(response);
+            console.log(response);
+        }else{
+            if(response?.data?.data !== undefined){
+                setSpaces(response.data.data)
+                setMsg(response.data.msg)
+            }else{
+                console.log(response.response.data.msg)
+                setMsg(response.response.data.msg);
+            }
+        }
     }
 
     async function handleSubmit(data) {
         if(spaceToEdit == null){
-            response = await spaceService.add(data.name);
+            response = await spaceService.add(data.name, user_id);
         }else{
             response = await spaceService.update(data.name, data.id);
         }
-        if(typeof response == "string"){
-            console.log(response)
+        console.log(response);
+        if (typeof response == "string"){
+            setMsg(response);
+            console.log(response);
         }else{
-            console.log(typeof response,response.data, response.msg);
+            if(response?.data?.msg !== undefined){
+                setMsg(response.data.msg)
+                getSpaces(user_id)
+            }else{
+                console.log(response.response.data.msg)
+                setMsg(response.response.data.msg);
+            }
         }
     }
 
@@ -48,13 +58,24 @@ function Spaces(props) {
         setIsModalOpen(true);
     }
 
-    function handleDelete(id) {
-        console.log(id)
+    async function handleDelete (id) {
+        response = await spaceService.delete(id);
+        if (typeof response == "string"){
+            setMsg(response);
+            console.log(response);
+        }else{
+            if(response?.data?.msg !== undefined){
+                setMsg(response.data.msg)
+                getSpaces(user_id)
+            }else{
+                console.log(response.response.data.msg)
+                setMsg(response.response.data.msg);
+            }
+        }
     }
 
     useEffect(() => {
-        //getDevices(user)
-        setSpaces(spaceTest)
+        getSpaces(user_id)
     }, []);
 
     return (
