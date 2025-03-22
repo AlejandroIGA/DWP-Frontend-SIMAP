@@ -125,7 +125,6 @@ function Crops(props) {
             const response = cropToEdit
                 ? await cropService.update(data.name, data.crop, data.tempMin, data.tempMax, data.humMin, data.humMax, data.humFmin, data.humFmax, data.type, data.space, data.id)
                 : await cropService.add(data.name, data.crop, data.tempMin, data.tempMax, data.humMin, data.humMax, data.humFmin, data.humFmax, data.type, data.space, user_id);
-
             if (typeof response === "string") {
                 openNotification('error', response);
             } else if (response?.data?.msg !== undefined) {
@@ -135,7 +134,8 @@ function Crops(props) {
                 openNotification('error', response.response.data.msg);
             }
         } catch (error) {
-            openNotification('error', "Error al procesar la solicitud");
+            console.log("error",error)
+            openNotification('error', error);
         } finally {
             setLoading(false);
         }
@@ -159,7 +159,7 @@ function Crops(props) {
                 openNotification('error', response.response.data.msg);
             }
         } catch (error) {
-            openNotification('error', "Error al eliminar el espacio");
+            openNotification('error', "Error al eliminar el dispositivo");
         } finally {
             setLoading(false);
         }

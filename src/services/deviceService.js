@@ -18,7 +18,7 @@ const deviceService = {
     add: async (name, crop, min, max, user_id, type) => {
         try {
             const response = await api.post("/devices", { name, crop, min, max, user_id, type });
-            console.log("Response POST /devices", response.msg)
+            console.log("Response POST /devices", response)
             return response;
         } catch (error) {
             console.log("ERROR POST /devices", error);

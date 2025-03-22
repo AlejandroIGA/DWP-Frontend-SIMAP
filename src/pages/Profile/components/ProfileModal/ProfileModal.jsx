@@ -48,6 +48,7 @@ function ProfileModal({ isModalOpen, setIsModalOpen, onSubmit, accountToEdit, se
                     <Form.Item
                         label="id"
                         name="id"
+                        hidden
                     >
                     </Form.Item>
                     <Form.Item

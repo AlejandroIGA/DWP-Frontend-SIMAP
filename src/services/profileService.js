@@ -1,15 +1,13 @@
 import api from './apiDashboard'
 
 const profileService = {
-    get: async (id) => {
+    get: async (user_id) => {
         try {
-            const response = await api.get("/profile", { params: id });
-            console.log("Response GET /profile", response.data)
-            return response.data;
+            const response = await api.get(`/profile/${user_id}`,);
+            return response;
         } catch (error) {
-            console.log("Error GET /profile", error)
             if (error.response) {
-                return error.response.data;
+                return error;
             } else {
                 return "Error al conectar con el servidor";
             }
@@ -18,12 +16,10 @@ const profileService = {
     update: async (name, phone, city, country, email, id) => {
         try {
             const response = await api.put("/profile", { name, phone, city, country, email, id });
-            console.log("Response UPDATE /profile", response.msg)
-            return response.data;
+            return response;
         } catch (error) {
-            console.log("ERROR UPDATE /profile", error);
             if (error.response) {
-                return error.response.data;
+                return error;
             } else {
                 return "Error al conectar con el servidor";
             }

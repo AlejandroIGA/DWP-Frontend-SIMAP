@@ -83,7 +83,7 @@ function RegisterForm() {
                         ]}
                     >
                         <Select
-                            placeholder="Seleccione una opción"
+                            placeholder="Seleccione un país"
                             allowClear
                         >
                             <Option value="MX">MX</Option>
@@ -97,7 +97,7 @@ function RegisterForm() {
                         ]}
                     >
                         <Select
-                            placeholder="Seleccione una opción"
+                            placeholder="Seleccione un estado"
                             allowClear
                         >
                             <Option value="1">1</Option>

@@ -25,7 +25,7 @@ function Devices(props) {
         });
       };
 
-    let user_id = '85';
+    let user_id = localStorage.getItem('user_id');
 
     async function getDevices(user_id) {
         setLoading(true); 
@@ -40,6 +40,7 @@ function Devices(props) {
                 openNotification('error', response.response.data.msg);
             }
         } catch (error) {
+            console.log(error);
             openNotification('error', "Error al obtener los espacios");
         } finally {
             setLoading(false);
@@ -50,12 +51,12 @@ function Devices(props) {
         setLoading(true); 
         try {
             const response = deviceToEdit
-                ? await deviceService.update(data.name, data.crop, data.min, data.max, data.type)
+                ? await deviceService.update(data.name, data.crop, data.min, data.max, data.id, data.type)
                 : await deviceService.add(data.name, data.crop, data.min, data.max, user_id, data.type);
     
             if (typeof response === "string") {
                 openNotification('error', response);
-            } else if (response?.data?.data !== undefined) {
+            } else if (response?.data?.msg !== undefined) {
                 await getDevices(user_id); 
                 openNotification('success', response.data.msg);
             } else {
@@ -79,7 +80,7 @@ function Devices(props) {
             const response = await deviceService.delete(id);
             if (typeof response === "string") {
                 openNotification('error', response);
-            } else if (response?.data?.data !== undefined) {
+            } else if (response?.data?.msg !== undefined) {
                 await getDevices(user_id); 
                 openNotification('success', response.data.msg);
             } else {
