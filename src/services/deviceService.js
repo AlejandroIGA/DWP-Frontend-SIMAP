@@ -1,29 +1,29 @@
 import api from './apiDashboard'
 
 const deviceService = {
-    get: async (id) => {
+    get: async (user_id) => {
         try {
-            const response = await api.get("/devices", { params: { id } });
+            const response = await api.get(`/devices/${user_id}`);
             console.log("Response GET /devices", response.data)
-            return response.data;
+            return response;
         } catch (error) {
             console.log("Error GET /devices", error)
             if (error.response) {
-                return error.response.data;
+                return error;
             } else {
                 return "Error al conectar con el servidor";
             }
         }
     },
-    add: async (name, crop, min, max, user, type) => {
+    add: async (name, crop, min, max, user_id, type) => {
         try {
-            const response = await api.post("/devices", { name, crop, min, max, user, type });
+            const response = await api.post("/devices", { name, crop, min, max, user_id, type });
             console.log("Response POST /devices", response.msg)
-            return response.data;
+            return response;
         } catch (error) {
             console.log("ERROR POST /devices", error);
             if (error.response) {
-                return error.response.data;
+                return error;
             } else {
                 return "Error al conectar con el servidor";
             }
@@ -31,13 +31,13 @@ const deviceService = {
     },
     delete: async (id) => {
         try {
-            const response = await api.delete("/devices", { params: { id } });
+            const response = await api.delete(`/devices/delete/${id}`);
             console.log("Response DELETE /devices", response.msg)
-            return response.data;
+            return response;
         } catch (error) {
             console.log("ERROR DELETE /devices", error);
             if (error.response) {
-                return error.response.data;
+                return error;
             } else {
                 return "Error al conectar con el servidor";
             }
@@ -45,14 +45,13 @@ const deviceService = {
     },
     update: async (name, crop, min, max, id, type) => {
         try {
-            const response = await api.put("/devices", { name, crop, min, max, id, type });
+            const response = await api.put(`/devices/update/${id}`, { name, crop, min, max, type });
             console.log("Reponse UPDATE /devices", response.msg)
-            return response.data;
-
+            return response;
         } catch (error) {
             console.log("ERROR UPDATE /devices", error);
             if (error.response) {
-                return error.response.data;
+                return error;
             } else {
                 return "Error al conectar con el servidor";
             }

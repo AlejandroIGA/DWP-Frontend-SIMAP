@@ -6,38 +6,66 @@ import NestedList from './components/nestedList/NestedList';
 import deviceService from '../../services/deviceService';
 import './style.css'
 import DeviceModal from './components/modal/DeviceModal';
+import {notification, Spin} from 'antd';
 
 function Devices(props) {
 
     const [devices, setDevices] = useState([]);
-    const [user, setUser] = useState();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [deviceToEdit, setDeviceToEdit] = useState(null);
 
-    let deviceTest = [{
-        name : "Dispositivo",
-        crop : "Jitomate",
-        min : 25,
-        max: 35,
-        type: "Temperatura",
-        id : 1
-    },
-    {
-        name : "Dispositivo 3",
-        crop : "Lechuga",
-        min : 40,
-        max: 60,
-        type: "Humedad",
-        id: 2
-    }]
+    const [loading, setLoading] = useState(false);
 
-    async function getDevices(user) {
-        const data = await deviceService.get(user)
-        setDevices(data)
+    const [api, contextHolder] = notification.useNotification();
+
+    const openNotification = (type, message) => {
+        api[type]({
+          description: message,
+          placement: 'top',
+        });
+      };
+
+    let user_id = '85';
+
+    async function getDevices(user_id) {
+        setLoading(true); 
+        try {
+            const response = await deviceService.get(user_id);
+            if (typeof response === "string") {
+                openNotification('error', response);
+            } else if (response?.data?.data !== undefined) {
+                setDevices(response.data.data);
+                openNotification('success', response.data.msg);
+            } else {
+                openNotification('error', response.response.data.msg);
+            }
+        } catch (error) {
+            openNotification('error', "Error al obtener los espacios");
+        } finally {
+            setLoading(false);
+        }
     }
 
-    async function handleSubmit(data){
-        console.log("HandleSubmit",data)
+    async function handleSubmit(data) {
+        setLoading(true); 
+        try {
+            const response = deviceToEdit
+                ? await deviceService.update(data.name, data.crop, data.min, data.max, data.type)
+                : await deviceService.add(data.name, data.crop, data.min, data.max, user_id, data.type);
+    
+            if (typeof response === "string") {
+                openNotification('error', response);
+            } else if (response?.data?.data !== undefined) {
+                await getDevices(user_id); 
+                openNotification('success', response.data.msg);
+            } else {
+                openNotification('error', response.response.data.msg);
+            }
+        } catch (error) {
+            openNotification('error', "Error al procesar la solicitud");
+        } finally {
+            setLoading(false); 
+        }
     }
 
     function handleEdit(device){
@@ -45,13 +73,27 @@ function Devices(props) {
         setIsModalOpen(true);
     }
 
-    function handleDelete(id){
-        console.log(id)
+    async function handleDelete(id) {
+        setLoading(true);
+        try {
+            const response = await deviceService.delete(id);
+            if (typeof response === "string") {
+                openNotification('error', response);
+            } else if (response?.data?.data !== undefined) {
+                await getDevices(user_id); 
+                openNotification('success', response.data.msg);
+            } else {
+                openNotification('error', response.response.data.msg);
+            }
+        } catch (error) {
+            openNotification('error', "Error al eliminar el espacio");
+        } finally {
+            setLoading(false); 
+        }
     }
 
     useEffect(() => {
-        //getDevices(user)
-        setDevices(deviceTest)
+        getDevices(user_id)
     }, []);
 
     return (
@@ -62,7 +104,12 @@ function Devices(props) {
                 title={"Dispositivos"}
                 content={
                     <>
-                        {devices.length === 0 ? (
+                        {contextHolder}
+                        {loading ? (
+                            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                                <Spin size="large" tip="Cargando..." fullscreen />
+                            </div>
+                        ) : devices.length === 0 ? (
                             <>
                                 <p style={{ color: '#000', marginLeft: '20px' }}>No hay dispositivos registrados</p>
                                 <button className='floating-button' onClick={() => setIsModalOpen(true)}>Agregar dispositivo</button>
@@ -78,16 +125,15 @@ function Devices(props) {
                                         min={device.min}
                                         max={device.max}
                                         type={device.type}
-                                        onEdit={()=>handleEdit(device)}
-                                        onDelete={()=>handleDelete(device.id)}
+                                        onEdit={() => handleEdit(device)}
+                                        onDelete={() => handleDelete(device.id)}
                                     ></NestedList>
                                 ))}
                             </>
                         )}
                     </>
                 }
-            >
-            </DashboardLayout>
+            />
             <DeviceModal
                 isModalOpen={isModalOpen}
                 setIsModalOpen={setIsModalOpen}

@@ -3,71 +3,104 @@ import DashboardLayout from '../../layout/dashboardLayout/dashboardLayout';
 import SideBar from '../../components/sideBar/sideBar';
 import DashboardHeader from '../../components/dashboardHeader/dashboardHeader';
 import Card from './components/card/NotificationCard';
+import { notification, Spin } from 'antd';
+import notificationService from '../../services/notificationService';
 
 function Notifications(props) {
 
     const [notifications, setNotifications] = useState([]);
+    const [loading, setLoading] = useState(false);
 
-    let notificationTest = [{
-        name: "Temperatura baja",
-        date: "15/03/2025",
-        description: "La temperatura del cultivo x se encuentra por debajo de la temperatura mínima definida.",
-        id: 1
-    },
-    {
-        name: "Humedad alta",
-        date: "15/03/2025",
-        description: "La humedad del cultivo y se encuentra por encima de la humedad máxima definida.",
-        id: 2
-    }]
+    const [api, contextHolder] = notification.useNotification();
 
-    async function getNotifications(user) {
+    const openNotification = (type, message) => {
+        api[type]({
+            description: message,
+            placement: 'top',
+        });
+    };
+
+    let user_id = 85;
+
+    async function getNotifications(user_id) {
+        setLoading(true);
+        try {
+            const response = await notificationService.get(user_id);
+            if (typeof response === "string") {
+                openNotification('error', response);
+            } else if (response?.data?.data !== undefined) {
+                setNotifications(response.data.data);
+                openNotification('success', response.data.msg);
+            } else {
+                openNotification('error', response.response.data.msg);
+            }
+        } catch (error) {
+            openNotification('error', "Error al obtener los espacios");
+        } finally {
+            setLoading(false);
+        }
     }
 
-    function handleDelete(id) {
-        console.log(id)
+    async function handleDelete(id) {
+        setLoading(true);
+        try {
+            const response = await notificationService.delete(id);
+            if (typeof response === "string") {
+                openNotification('error', response);
+            } else if (response?.data?.data !== undefined) {
+                setNotifications(response.data.data);
+                openNotification('success', response.data.msg);
+            } else {
+                openNotification('error', response.response.data.msg);
+            }
+        } catch (error) {
+            openNotification('error', "Error al obtener los espacios");
+        } finally {
+            setLoading(false);
+        }
     }
 
     useEffect(() => {
-        //getDevices(user)
-        setNotifications(notificationTest)
+        getNotifications(user_id);
     }, []);
 
     return (
-        <>
             <DashboardLayout
                 header={<DashboardHeader />}
                 nav={<SideBar></SideBar>}
                 title={"Notificaciones"}
                 content={
                     <>
-                        {notifications.length == 0 ?
-                            (
-                                <>
-                                    <p style={{ color: '#000', marginLeft: '20px' }}>No hay notificaciones</p>
-                                </>
-                            )
-                            :
-                            (
-                                <>
-                                    {notifications.map((item, index) => (
-                                        <Card
-                                            key={index}
-                                            name={item.name}
-                                            date={item.date}
-                                            description={item.description}
-                                            onDelete={() => handleDelete(item.id)}
-                                        ></Card>
-                                    ))}
-                                </>
-                            )}
+                        {contextHolder}
+                        {loading ? (
+                            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                                <Spin size="large" tip="Cargando..." fullscreen />
+                            </div>
+                        ) : (
+                            <>
+                                {notifications.length == 0 ?
+                                    (
+                                            <p style={{ color: '#000', marginLeft: '20px' }}>No hay notificaciones</p>
+                                    )
+                                    :
+                                    (
+                                        <>
+                                            {notifications.map((item, index) => (
+                                                <Card
+                                                    key={index}
+                                                    name={item.name}
+                                                    date={item.date}
+                                                    description={item.description}
+                                                    onDelete={() => handleDelete(item.id)}
+                                                ></Card>
+                                            ))}
+                                        </>
+                                    )}
+                            </>
+                        )}
                     </>
-
                 }
-            >
-            </DashboardLayout>
-
-        </>
+            />
     );
 }
 
