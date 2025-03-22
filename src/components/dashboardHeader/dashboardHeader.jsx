@@ -5,8 +5,15 @@ import './style.css';
 import sun from '../../assets/sun.png';
 import humidityIcon from '../../assets/humidity.png';
 import precipitationIcon from '../../assets/precipitation.png';
+import { useNavigate } from 'react-router-dom';
 
 function DashboardHeader({ temperature = "0.0", humidity = "0.0", precipitation = "0.0" }) {
+    const navigate = useNavigate();
+    function logout(){
+        localStorage.removeItem('user_id');
+        localStorage.removeItem('token');
+        navigate("/ingresar")
+    }
     return (
         <Row className='header-dashboard'>
             <Col xs={24} sm={24} md={4} lg={4} xl={4} className='logo'>
@@ -24,7 +31,7 @@ function DashboardHeader({ temperature = "0.0", humidity = "0.0", precipitation 
                 </div>
             </Col>
             <Col xs={24} sm={24} md={4} lg={4} xl={4} className='exit'>
-                <a><LogoutOutlined /></a>
+                <button style={{background:"none"}} onClick={logout}><LogoutOutlined /></button>
             </Col>
         </Row>
     );

@@ -25,7 +25,7 @@ function Spaces(props) {
         });
       };
 
-    let user_id = '85';
+    let user_id = localStorage.getItem('user_id');
 
     async function getSpaces(user_id) {
         setLoading(true); 
@@ -33,11 +33,12 @@ function Spaces(props) {
             const response = await spaceService.get(user_id);
             if (typeof response === "string") {
                 openNotification('error', response);
+                setSpaces([]);
             } else if (response?.data?.data !== undefined) {
                 setSpaces(response.data.data);
-                openNotification('success', response.data.msg);
             } else {
                 openNotification('error', response.response.data.msg);
+                setSpaces([]);
             }
         } catch (error) {
             openNotification('error', "Error al obtener los espacios");
@@ -55,7 +56,7 @@ function Spaces(props) {
     
             if (typeof response === "string") {
                 openNotification('error', response);
-            } else if (response?.data?.data !== undefined) {
+            } else if (response?.data?.msg !== undefined) {
                 await getSpaces(user_id); 
                 openNotification('success', response.data.msg);
             } else {
@@ -79,7 +80,7 @@ function Spaces(props) {
             const response = await spaceService.delete(id);
             if (typeof response === "string") {
                 openNotification('error', response);
-            } else if (response?.data?.data !== undefined) {
+            } else if (response?.data?.msg !== undefined) {
                 await getSpaces(user_id); 
                 openNotification('success', response.data.msg);
             } else {

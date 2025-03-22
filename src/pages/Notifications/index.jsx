@@ -35,7 +35,7 @@ function Notifications(props) {
                 openNotification('error', response.response.data.msg);
             }
         } catch (error) {
-            openNotification('error', "Error al obtener los espacios");
+            openNotification('error', error.response.data.msg);
         } finally {
             setLoading(false);
         }
