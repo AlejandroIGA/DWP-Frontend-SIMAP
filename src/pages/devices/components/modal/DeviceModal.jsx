@@ -50,6 +50,7 @@ function DeviceModal({ isModalOpen, setIsModalOpen, onSubmit, deviceToEdit, setD
                     <Form.Item
                         label="id"
                         name="id"
+                        hidden
                     >
                     </Form.Item>
                     <Form.Item

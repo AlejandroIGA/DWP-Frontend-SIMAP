@@ -3,7 +3,7 @@ import './style.css'
 import { Modal, Button, Form, Input, Select, InputNumber } from 'antd';
 import { CropTwoTone } from '@mui/icons-material';
 
-function CropModal({ isModalOpen, setIsModalOpen, onSubmit, cropToEdit, setCropToEdit, user }) {
+function CropModal({ isModalOpen, setIsModalOpen, onSubmit, cropToEdit, setCropToEdit, spaces }) {
     const [form] = Form.useForm();
 
     const handleOk = () => {
@@ -43,7 +43,6 @@ function CropModal({ isModalOpen, setIsModalOpen, onSubmit, cropToEdit, setCropT
     }, [cropToEdit])
 
     return (
-        <>
             <Modal title={cropToEdit != null ? "Editar cultivo" : "Agregar cultivo"} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}
                 footer={[
                     <Button key="cancel" onClick={handleCancel}>Cancelar</Button>,
@@ -56,6 +55,7 @@ function CropModal({ isModalOpen, setIsModalOpen, onSubmit, cropToEdit, setCropT
                     <Form.Item
                         label="id"
                         name="id"
+                        hidden
                     >
                     </Form.Item>
                     <Form.Item
@@ -80,7 +80,12 @@ function CropModal({ isModalOpen, setIsModalOpen, onSubmit, cropToEdit, setCropT
                     </Form.Item>
                     <Form.Item label="Espacio" name="space">
                         <Select>
-                            <Select.Option value="espacio1">espacio1</Select.Option>
+                            <Select.Option value="">Sin espacio</Select.Option>
+                            {
+                                spaces.map((space,index)=>(
+                                    <Select.Option value={space.name} key={index}>{space.name}</Select.Option>
+                                ))
+                            }
                         </Select>
                     </Form.Item>
                     <Form.Item
@@ -160,7 +165,7 @@ function CropModal({ isModalOpen, setIsModalOpen, onSubmit, cropToEdit, setCropT
                     </Form.Item>
                     <Form.Item
                         label="Temperatura ambiente maxíma"
-                        name="tempMin"
+                        name="tempMax"
                         rules={[
                             { required: true, message: 'Ingrese un valor máximo' },
                         ]}
@@ -182,7 +187,6 @@ function CropModal({ isModalOpen, setIsModalOpen, onSubmit, cropToEdit, setCropT
                 </Form>
 
             </Modal>
-        </>
     );
 }
 
