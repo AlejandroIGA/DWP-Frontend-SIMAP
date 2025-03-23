@@ -13,9 +13,9 @@ const profileService = {
             }
         }
     },
-    update: async (name, phone, city, country, email, id) => {
+    update: async (name, phone, city, country, email, user_id) => {
         try {
-            const response = await api.put("/profile", { name, phone, city, country, email, id });
+            const response = await api.put(`/profile/update/${user_id}`, { name, phone, city, country, email });
             return response;
         } catch (error) {
             if (error.response) {
