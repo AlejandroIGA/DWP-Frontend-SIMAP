@@ -32,7 +32,7 @@ function LoginForm() {
         try {
             const response = await authService.login(values.email, values.password);
             setEmail(values.email);
-            console.log(response);
+            //console.log(response);
             if (typeof response === "string") {
                 openNotification('error', response);
             } else if (response?.data?.msg !== undefined) {
@@ -58,8 +58,10 @@ function LoginForm() {
             openNotification('error', response);
         } else if (response?.data?.success) {
             setIsModalOpen(false);
+            console.log(response);
             localStorage.setItem('user_id', response.data.user)
             localStorage.setItem('token', response.headers['token'])
+            localStorage.setItem('state', response.data.state)
             setEmail('');
             setToken('');
             navigate("/panel/espacios");

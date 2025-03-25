@@ -11,12 +11,15 @@
     padding: 20px;
 }
 
-.circle{
-    width: 250px;
-    height: 250px;
-    border-radius: 100%;
+.circle {
+    width: 15vw; /* 15% del ancho de la pantalla */
+    height: 15vw; /* Mantiene relación 1:1 (círculo perfecto) */
+    min-width: 120px; /* Tamaño mínimo para móviles muy pequeños */
+    min-height: 120px;
+    max-width: 220px; /* Tamaño máximo para pantallas grandes */
+    max-height: 220px;
+    border-radius: 50%; /* 50% para círculo perfecto */
     background-color: #D5E8D4;
-    margin-bottom: 20px;
     margin-top: 20px;
 }
 
@@ -62,8 +65,8 @@ a{
     }
 
     .circle {
-        width: 200px; /* Reduce el tamaño del círculo */
-        height: 200px;
+        width: 20vw;
+        height: 20vw;
     }
 }
 
@@ -75,8 +78,10 @@ a{
     }
 
     .circle {
-        width: 150px; /* Reduce aún más el tamaño del círculo */
-        height: 150px;
+        width: 25vw;
+        height: 25vw;
+        min-width: 100px;
+        min-height: 100px;
     }
 
     .form .ant-input,
