@@ -12,6 +12,7 @@ function RegisterForm() {
     const [loading, setLoading] = useState(false);
 
     const [api, contextHolder] = notification.useNotification();
+    const [countrySelected, setCountrySelected] = useState('');
 
     const openNotification = (type, message) => {
         api[type]({
@@ -19,6 +20,10 @@ function RegisterForm() {
             placement: 'top',
         });
     };
+
+    const getCities = async (country) => {
+
+    }
 
 
     const handleSubmit = async (values) => {
@@ -85,6 +90,7 @@ function RegisterForm() {
                         <Select
                             placeholder="Seleccione un país"
                             allowClear
+                            onChange={(e)=>setCountrySelected(e.value.target)}
                         >
                             <Option value="MX">MX</Option>
                             <Option value="US">US</Option>

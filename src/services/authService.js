@@ -28,6 +28,20 @@ const authService = {
             }
         }
 
+    },
+    verify: async (email, token) => {
+        try {
+            const response = await api.post('/verify-otp', { email, token });
+            console.log(response);
+            return response;
+        } catch (error) {
+            console.log("ERROR /verify-otp")
+            if (error.response) {
+                return error;
+            } else {
+                return "Error al conectar con el servidor";
+            }
+        }
     }
 }
 
