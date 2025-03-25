@@ -2,6 +2,9 @@ import React from 'react';
 import NavBar from '../../components/navBar/NavBar';
 import Footer from '../../components/footer/Footer'
 import LandingLayout from '../../layout/landingLayout/LandingLayout';
+import ISO9001 from '../../assets/ISO9001.png';
+import ISO14001 from '../../assets/ISO14001.png';
+import ISO27001 from '../../assets/ISO27001.png';
 import './style.css'
 
 function Certifications(props) {
@@ -14,7 +17,7 @@ function Certifications(props) {
                     <div>
                         <div className='test'>
                             <div className='info-image'>
-
+                                <img src={ISO9001}></img>
                             </div>
                             <div className='info-data'>
                                 <h3>Titulo</h3>
@@ -31,7 +34,7 @@ function Certifications(props) {
                         </div>
                         <div className='test'>
                             <div className='info-image'>
-
+                                <img src={ISO27001}></img>
                             </div>
                             <div className='info-data'>
                                 <h3>Titulo</h3>
@@ -46,7 +49,23 @@ function Certifications(props) {
                                 </p>
                             </div>
                         </div>
-                        
+                        <div className='test'>
+                            <div className='info-image'>
+                                <img src={ISO14001}></img>
+                            </div>
+                            <div className='info-data'>
+                                <h3>Titulo</h3>
+                                <p>
+                                    data data data data data data data data data data data
+                                    data data data data data data data data data data data
+                                    data data data data data data data data data data data
+                                    data data data data data data data data data data data
+                                    data data data data data data data data data data data
+                                    data data data data data data data data data data data
+                                    data data data data data data data data data data data
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
