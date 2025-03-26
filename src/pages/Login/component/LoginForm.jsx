@@ -10,6 +10,7 @@ function LoginForm() {
     const navigate = useNavigate();
 
     const [form] = Form.useForm();
+    const [form2] = Form.useForm();
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('');
     const [secretUrl, setSecretUrl] = useState('');
@@ -81,10 +82,10 @@ function LoginForm() {
         }
     }
 
-    async function pswRecovery(e){
+    async function pswRecovery(e) {
         e.preventDefault();
         //Enviar el código al correo del usuario
-        if(step == 'email'){
+        if (step == 'email') {
             openNotification('info', "Se ha enviado un código a su correo");
             const response = await authService.sendCode(email);
             if (typeof response === "string") {
@@ -95,7 +96,7 @@ function LoginForm() {
                 openNotification('error', response.response.data.msg);
             }
         }
-        if(step == 'code'){
+        if (step == 'code') {
             const response = await authService.validateCode(email, code);
             if (typeof response === "string") {
                 openNotification('error', response);
@@ -106,7 +107,7 @@ function LoginForm() {
                 openNotification('error', response.response.data.msg);
             }
         }
-        if(step == 'psw'){
+        if (step == 'psw') {
             const response = await authService.updatePsw(email, newPsw);
             if (typeof response === "string") {
                 openNotification('error', response);
@@ -116,6 +117,7 @@ function LoginForm() {
                 setEmail('');
                 setNewPsw('');
                 setCode('');
+                form2.resetFields();
                 setIsModalOpen2(false)
             } else {
                 openNotification('error', response.response.data.msg);
@@ -167,7 +169,9 @@ function LoginForm() {
                             </Form.Item>
                         </Form>
                         <Link to="/registrarse">Crear una cuenta</Link>
-                        <button style={{ margin: "0", background: "none" }} onClick={() => { setIsModalOpen2(true), setEmail(''), setCode(''), setNewPsw(''), setStep('email') }}>Recuperar contraseña</button>
+                        <button style={{ margin: "0", background: "none" }} onClick={() => { setIsModalOpen2(true), setEmail(''), setCode(''), setNewPsw(''), setStep('email'), form2.resetFields() }}>
+                            Recuperar contraseña
+                        </button>
 
                     </div>
                 )
@@ -270,17 +274,26 @@ function LoginForm() {
                         Validar
                     </button>
                 </form>
-                <form onSubmit={pswRecovery} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <Form form={form} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <label>Ingresa tu nueva contraseña</label>
-                    <input
+                    <Form.Item
+                        name="password"
+                        rules={[
+                            { required: true, message: "Ingrese una contraseña" },
+                            { min: 10, message: "Debe tener una longitud minima de 10 caracteres" },
+                            { max: 14, message: "Debe tener una longitud máxima de 14 caracteres" },
+                            {
+                                pattern: /^(?=.*[A-Za-z])(?=.*\d).+$/,
+                                message: 'La contraseña debe contener al menos una letra y un número',
+                            },
+                        ]}
+                    >
+                        <Input.Password 
                         disabled={!(step == 'psw')}
-                        required
-                        type="text"
-                        name="newPsw"
-                        value={newPsw}
                         onChange={(e) => setNewPsw(e.target.value)}
-                        style={{ background: "#FFF", color: "#000", margin: '10px 0' }}
-                    />
+
+                        />
+                    </Form.Item>
                     <button
                         hidden={!(step == 'psw')}
                         type="submit"
@@ -293,10 +306,11 @@ function LoginForm() {
                             cursor: 'pointer',
                             margin: 0
                         }}
+                        onClick={pswRecovery}
                     >
                         Enviar
                     </button>
-                </form>
+                </Form>
             </Modal>
         </>
 
