@@ -9,7 +9,7 @@ import './style.css'
 import { Col, Row } from 'antd';
 
 
-function NestedList({ name = "Dispositivo X", crop = "Cultivo X", min = 0.0, max = 0.0, type, onEdit, onDelete }) {
+function NestedList({ name = "Dispositivo X", crop = "Cultivo X", min = 0.0, max = 0.0, type, onEdit, onDelete, realTimeData }) {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
@@ -22,7 +22,7 @@ function NestedList({ name = "Dispositivo X", crop = "Cultivo X", min = 0.0, max
     >
       <Row>
         <Col span={20} className='left'>
-          <h2>{name}</h2>
+          <h2>{name} Lectura: {realTimeData}{type == "Temperatura" ? '°C':'%'}</h2>
           <button onClick={onEdit} style={{ backgroundColor: "#fff" }} ><EditFilled style={{ color: "#048be9", fontSize: "25px" }} /></button>
           <button onClick={onDelete} style={{ backgroundColor: "#fff" }}><DeleteFilled style={{ color: "#ec1515", fontSize: "25px" }} /></button>
         </Col>

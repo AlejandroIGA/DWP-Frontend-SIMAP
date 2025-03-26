@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import DashboardLayout from '../../layout/dashboardLayout/dashboardLayout';
 import SideBar from '../../components/sideBar/sideBar';
 import DashboardHeader from '../../components/dashboardHeader/dashboardHeader';
@@ -16,6 +16,9 @@ function Devices(props) {
 
     const [loading, setLoading] = useState(false);
 
+    const [realTimeData, setRealTimeData] = useState(null); // Nuevo estado para datos en tiempo real
+    const ws = useRef(null); // Referencia para el WebSocket
+
     const [api, contextHolder] = notification.useNotification();
 
     const openNotification = (type, message) => {
@@ -27,17 +30,48 @@ function Devices(props) {
 
     let user_id = localStorage.getItem('user_id');
 
+    // Función para conectar WebSocket
+    const connectWebSocket = (deviceId) => {
+        const wsUrl = 'ws://localhost:3000' 
+
+        ws.current = new WebSocket(wsUrl);
+
+        ws.current.onopen = () => {
+            console.log('WebSocket conectado');
+            openNotification("info", "Esperando datos de los sensores, esto puede demorar hasta 30s. \nPor temas prácticos solo se hace una simulación del primer sensor obtenido de la base de datos, los valores del sensor son refrescados cada 30s")
+            ws.current.send(JSON.stringify({ 
+                device_id: deviceId,
+                user_id: localStorage.getItem('user_id')
+            }));
+        };
+
+        ws.current.onmessage = (e) => {
+            const data = JSON.parse(e.data);
+            setRealTimeData({
+                value: data.value,
+                id: data.device_id
+            });
+        };
+
+        ws.current.onclose = () => {
+            console.log('WebSocket desconectado');
+        };
+    };
+
     async function getDevices(user_id) {
         setLoading(true); 
         try {
             const response = await deviceService.get(user_id);
             if (typeof response === "string") {
                 openNotification('error', response);
+                setDevices([])
             } else if (response?.data?.data !== undefined) {
                 setDevices(response.data.data);
+                connectWebSocket(response.data.data[0].id)
                 openNotification('success', response.data.msg);
             } else {
                 openNotification('error', response.response.data.msg);
+                setDevices([])
             }
         } catch (error) {
             console.log(error);
@@ -57,6 +91,7 @@ function Devices(props) {
             if (typeof response === "string") {
                 openNotification('error', response);
             } else if (response?.data?.msg !== undefined) {
+                ws.current.close();
                 await getDevices(user_id); 
                 openNotification('success', response.data.msg);
             } else {
@@ -81,6 +116,7 @@ function Devices(props) {
             if (typeof response === "string") {
                 openNotification('error', response);
             } else if (response?.data?.msg !== undefined) {
+                ws.current.close();
                 await getDevices(user_id); 
                 openNotification('success', response.data.msg);
             } else {
@@ -92,6 +128,15 @@ function Devices(props) {
             setLoading(false); 
         }
     }
+
+    // Desconectar al desmontar el componente
+    useEffect(() => {
+        return () => {
+            if (ws.current) {
+                ws.current.close();
+            }
+        };
+    }, []);
 
     useEffect(() => {
         getDevices(user_id)
@@ -128,6 +173,7 @@ function Devices(props) {
                                         type={device.type}
                                         onEdit={() => handleEdit(device)}
                                         onDelete={() => handleDelete(device.id)}
+                                        realTimeData = {index == 0 ? realTimeData?.value: null}
                                     ></NestedList>
                                 ))}
                             </>

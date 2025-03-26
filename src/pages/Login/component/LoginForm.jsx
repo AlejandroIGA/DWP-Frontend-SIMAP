@@ -180,7 +180,7 @@ function LoginForm() {
             >
                 <form onSubmit={secureCodeForm} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <p>Escanea el QR para obtener tu código de seguridad</p>
-                    <p>Si ya tiene una isntancia de esta aplicación registrada, debe borrarla y escanear nuevamente el código QR</p>
+                    <p>Si ya tiene una instancia de esta aplicación registrada, debe borrarla y escanear nuevamente el código QR</p>
                     <div style={{ margin: '20px 0' }}>
                         <QRCodeSVG value={secretUrl} />
                     </div>
