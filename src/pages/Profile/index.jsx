@@ -35,6 +35,8 @@ function Profile(props) {
                 setAccountInfo([]);
             } else if (response?.data?.data !== undefined) {
                 setAccountInfo(response.data.data);
+                localStorage.setItem('state', response.data.data.city)
+                console.log(localStorage.getItem('state'));
             } else {
                 openNotification('error', response.response.data.msg);
                 setAccountInfo([]);

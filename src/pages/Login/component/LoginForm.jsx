@@ -1,10 +1,9 @@
-import React from "react";
-import { useState } from 'react'
+import React, { useState } from "react";
 import './style.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, Form, Input, notification, Spin, Modal } from 'antd';
 import authService from "../../../services/authService";
-import {QRCodeSVG} from 'qrcode.react';
+import { QRCodeSVG } from 'qrcode.react';
 
 
 function LoginForm() {
@@ -16,6 +15,11 @@ function LoginForm() {
     const [secretUrl, setSecretUrl] = useState('');
     const [token, setToken] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpen2, setIsModalOpen2] = useState(false);
+
+    const [code, setCode] = useState('');
+    const [step, setStep] = useState('email');
+    const [newPsw, setNewPsw] = useState('');
 
 
     const [api, contextHolder] = notification.useNotification();
@@ -27,12 +31,19 @@ function LoginForm() {
         });
     };
 
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    }
+
+    const handleCancel2 = () => {
+        setIsModalOpen2(false);
+    }
+
     const handleSubmit = async (values) => {
         setLoading(true);
         try {
             const response = await authService.login(values.email, values.password);
             setEmail(values.email);
-            //console.log(response);
             if (typeof response === "string") {
                 openNotification('error', response);
             } else if (response?.data?.msg !== undefined) {
@@ -51,7 +62,7 @@ function LoginForm() {
         }
     };
 
-    async function secureCodeForm(e){
+    async function secureCodeForm(e) {
         e.preventDefault();
         const response = await authService.verify(email, token)
         if (typeof response === "string") {
@@ -67,6 +78,48 @@ function LoginForm() {
             navigate("/panel/espacios");
         } else {
             openNotification('error', response.response.data.msg);
+        }
+    }
+
+    async function pswRecovery(e){
+        e.preventDefault();
+        //Enviar el código al correo del usuario
+        if(step == 'email'){
+            openNotification('info', "Se ha enviado un código a su correo");
+            const response = await authService.sendCode(email);
+            if (typeof response === "string") {
+                openNotification('error', response);
+            } else if (response?.data?.success) {
+                setStep('code')
+            } else {
+                openNotification('error', response.response.data.msg);
+            }
+        }
+        if(step == 'code'){
+            const response = await authService.validateCode(email, code);
+            if (typeof response === "string") {
+                openNotification('error', response);
+            } else if (response?.data?.success) {
+                openNotification('success', response.data.msg);
+                setStep('psw')
+            } else {
+                openNotification('error', response.response.data.msg);
+            }
+        }
+        if(step == 'psw'){
+            const response = await authService.updatePsw(email, newPsw);
+            if (typeof response === "string") {
+                openNotification('error', response);
+            } else if (response?.data?.success) {
+                openNotification('success', response.data.msg);
+                setStep('email')
+                setEmail('');
+                setNewPsw('');
+                setCode('');
+                setIsModalOpen2(false)
+            } else {
+                openNotification('error', response.response.data.msg);
+            }
         }
     }
 
@@ -114,44 +167,137 @@ function LoginForm() {
                             </Form.Item>
                         </Form>
                         <Link to="/registrarse">Crear una cuenta</Link>
+                        <button style={{ margin: "0", background: "none" }} onClick={() => { setIsModalOpen2(true), setEmail(''), setCode(''), setNewPsw(''), setStep('email') }}>Recuperar contraseña</button>
+
                     </div>
                 )
             }
-            <Modal 
-    title="MFA" 
-    open={isModalOpen}
-    footer={[]}
->
-    <form onSubmit={secureCodeForm} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <p>Escanea el QR para obtener tu código de seguridad</p>
-        <div style={{ margin: '20px 0' }}>
-            <QRCodeSVG value={secretUrl} />
-        </div>
-        <label>Ingresa tu código de seguridad</label>
-        <input 
-            required 
-            type="text" 
-            name="secureCode" 
-            value={token} 
-            onChange={(e) => setToken(e.target.value)} 
-            style={{background: "#FFF", color: "#000", margin: '10px 0'}}
-        />
-        <button 
-            type="submit" 
-            style={{ 
-                padding: '8px 16px', 
-                background: '#1890ff', 
-                color: 'white', 
-                border: 'none', 
-                borderRadius: '4px',
-                cursor: 'pointer',
-                margin: 0
-            }}
-        >
-            Validar
-        </button>
-    </form>
-</Modal>
+            <Modal
+                title="MFA"
+                open={isModalOpen}
+                footer={[]}
+                onCancel={handleCancel}
+            >
+                <form onSubmit={secureCodeForm} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <p>Escanea el QR para obtener tu código de seguridad</p>
+                    <p>Si ya tiene una isntancia de esta aplicación registrada, debe borrarla y escanear nuevamente el código QR</p>
+                    <div style={{ margin: '20px 0' }}>
+                        <QRCodeSVG value={secretUrl} />
+                    </div>
+                    <label>Ingresa tu código de seguridad</label>
+                    <input
+                        required
+                        type="text"
+                        name="secureCode"
+                        value={token}
+                        onChange={(e) => setToken(e.target.value)}
+                        style={{ background: "#FFF", color: "#000", margin: '10px 0' }}
+
+                    />
+                    <button
+                        type="submit"
+                        style={{
+                            padding: '8px 16px',
+                            background: '#1890ff',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '4px',
+                            cursor: 'pointer',
+                            margin: 0
+                        }}
+                    >
+                        Validar
+                    </button>
+                </form>
+            </Modal>
+            <Modal
+                title="Recuperación de contraseña"
+                open={isModalOpen2}
+                onCancel={handleCancel2}
+                footer={[]}
+            >
+                <form onSubmit={pswRecovery} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <label>Ingresa tu correo</label>
+                    <input
+                        disabled={!(step == 'email')}
+                        required
+                        type="email"
+                        name="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        style={{ background: "#FFF", color: "#000", margin: '10px 0' }}
+                    />
+                    <button
+                        hidden={!(step == 'email')}
+                        type="submit"
+                        style={{
+                            padding: '8px 16px',
+                            background: '#1890ff',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '4px',
+                            cursor: 'pointer',
+                            margin: 0
+                        }}
+                    >
+                        Enviar
+                    </button>
+                </form>
+                <form onSubmit={pswRecovery} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <label>Ingresa tu código de seguridad</label>
+                    <input
+                        disabled={!(step == 'code')}
+                        required
+                        type="text"
+                        name="code"
+                        value={code}
+                        onChange={(e) => setCode(e.target.value)}
+                        style={{ background: "#FFF", color: "#000", margin: '10px 0' }}
+                    />
+                    <button
+                        hidden={!(step == 'code')}
+                        type="submit"
+                        style={{
+                            padding: '8px 16px',
+                            background: '#1890ff',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '4px',
+                            cursor: 'pointer',
+                            margin: 0
+                        }}
+                    >
+                        Validar
+                    </button>
+                </form>
+                <form onSubmit={pswRecovery} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <label>Ingresa tu nueva contraseña</label>
+                    <input
+                        disabled={!(step == 'psw')}
+                        required
+                        type="text"
+                        name="newPsw"
+                        value={newPsw}
+                        onChange={(e) => setNewPsw(e.target.value)}
+                        style={{ background: "#FFF", color: "#000", margin: '10px 0' }}
+                    />
+                    <button
+                        hidden={!(step == 'psw')}
+                        type="submit"
+                        style={{
+                            padding: '8px 16px',
+                            background: '#1890ff',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '4px',
+                            cursor: 'pointer',
+                            margin: 0
+                        }}
+                    >
+                        Enviar
+                    </button>
+                </form>
+            </Modal>
         </>
 
     );

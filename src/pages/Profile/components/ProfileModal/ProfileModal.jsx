@@ -75,7 +75,7 @@ function ProfileModal({ isModalOpen, setIsModalOpen, onSubmit, accountToEdit, se
                     <Form.Item
                         name="country"
                         rules={[
-                            { required: true, message: 'Ingrese su número de teléfono' },
+                            { required: true, message: 'Ingrese su país' },
                         ]}
                     >
                         <Select
@@ -83,21 +83,24 @@ function ProfileModal({ isModalOpen, setIsModalOpen, onSubmit, accountToEdit, se
                             allowClear
                         >
                             <Option value="MX">MX</Option>
-                            <Option value="US">US</Option>
                         </Select>
                     </Form.Item>
                     <Form.Item
                         name="city"
                         rules={[
-                            { required: true, message: 'Ingrese su número de teléfono' },
+                            { required: true, message: 'Ingrese su estado' },
                         ]}
                     >
                         <Select
-                            placeholder="Seleccione una opción"
-                            allowClear
+                            placeholder="Seleccione un estado"
                         >
-                            <Option value="1">1</Option>
-                            <Option value="2">2</Option>
+                            <Option value="Querétaro">Querétaro</Option>
+                            <Option value="Sonora">Sonora</Option>
+                            <Option value="Durango">Durango</Option>
+                            <Option value="Guadalajara">Guadalajara</Option>
+                            <Option value="Oaxaca">Oaxaca</Option>
+                            <Option value="Yucatán">Yucatán</Option>
+
                         </Select>
                     </Form.Item>
                     <Form.Item

@@ -1,9 +1,7 @@
-import React from "react";
-import { useState } from 'react'
-import { Button, Form, Input, Select } from 'antd';
+import React, { useState } from "react";
+import { Button, Form, Input, Select, notification, Spin } from 'antd';
 import './style.css'
 import { Link } from "react-router-dom";
-import { notification, Spin } from 'antd';
 import authService from "../../../services/authService";
 
 function RegisterForm() {
@@ -12,7 +10,6 @@ function RegisterForm() {
     const [loading, setLoading] = useState(false);
 
     const [api, contextHolder] = notification.useNotification();
-    const [countrySelected, setCountrySelected] = useState('');
 
     const openNotification = (type, message) => {
         api[type]({
@@ -20,10 +17,6 @@ function RegisterForm() {
             placement: 'top',
         });
     };
-
-    const getCities = async (country) => {
-
-    }
 
 
     const handleSubmit = async (values) => {
@@ -90,10 +83,8 @@ function RegisterForm() {
                         <Select
                             placeholder="Seleccione un país"
                             allowClear
-                            onChange={(e)=>setCountrySelected(e.value.target)}
                         >
                             <Option value="MX">MX</Option>
-                            <Option value="US">US</Option>
                         </Select>
                     </Form.Item>
                     <Form.Item
@@ -106,8 +97,13 @@ function RegisterForm() {
                             placeholder="Seleccione un estado"
                             allowClear
                         >
-                            <Option value="1">1</Option>
-                            <Option value="2">2</Option>
+                            <Option value="Querétaro">Querétaro</Option>
+                            <Option value="Sonora">Sonora</Option>
+                            <Option value="Durango">Durango</Option>
+                            <Option value="Guadalajara">Guadalajara</Option>
+                            <Option value="Oaxaca">Oaxaca</Option>
+                            <Option value="Yucatán">Yucatán</Option>
+
                         </Select>
                     </Form.Item>
                     <Form.Item
