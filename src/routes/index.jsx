@@ -17,7 +17,6 @@ import ProtectedRoute from './ProtectedRoutes'; // Asegúrate de que la ruta de 
 
 const AppRoutes = () => {
     let routes = useRoutes([
-        { path: '*', element: <ErrorPage /> },
         { path: '/', element: <Home /> },
         { path: '/servicios', element: <ServicesPage /> },
         { path: '/contacto', element: <Contact /> },
@@ -34,6 +33,7 @@ const AppRoutes = () => {
                 { path: '/panel/cuenta', element: <Profile /> },
             ],
         },
+        { path: '*', element: <ErrorPage /> },
     ]);
 
     return routes;
