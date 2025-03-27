@@ -32,7 +32,7 @@ function Devices(props) {
 
     // Función para conectar WebSocket
     const connectWebSocket = (deviceId) => {
-        const wsUrl = 'ws://localhost:3000' 
+        const wsUrl = import.meta.env.VITE_WS_URL
 
         ws.current = new WebSocket(wsUrl);
 
@@ -76,6 +76,7 @@ function Devices(props) {
         } catch (error) {
             console.log(error);
             openNotification('error', "Error al obtener los espacios");
+            setDevices([])
         } finally {
             setLoading(false);
         }
@@ -91,13 +92,16 @@ function Devices(props) {
             if (typeof response === "string") {
                 openNotification('error', response);
             } else if (response?.data?.msg !== undefined) {
-                ws.current.close();
+                if(ws.current != null){
+                    ws.current.close();
+                }
                 await getDevices(user_id); 
                 openNotification('success', response.data.msg);
             } else {
                 openNotification('error', response.response.data.msg);
             }
         } catch (error) {
+            console.log(error);
             openNotification('error', "Error al procesar la solicitud");
         } finally {
             setLoading(false); 

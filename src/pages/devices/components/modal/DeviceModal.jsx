@@ -110,8 +110,8 @@ function DeviceModal({ isModalOpen, setIsModalOpen, onSubmit, deviceToEdit, setD
                         name="name"
                         rules={[
                             { required: true, message: 'Ingrese un nombre para el dispositivo' },
-                            { min: 5, message: 'El nombre debe tener al menos 3 caracteres' },
-                            { max: 20, message: 'El nombre no puede superar los 50 caracteres' },
+                            { min: 5, message: 'El nombre debe tener al menos 5 caracteres' },
+                            { max: 20, message: 'El nombre no puede superar los 20 caracteres' },
                         ]}
                     >
                         <Input />

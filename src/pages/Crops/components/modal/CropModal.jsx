@@ -63,7 +63,7 @@ function CropModal({ isModalOpen, setIsModalOpen, onSubmit, cropToEdit, setCropT
                         name="name"
                         rules={[
                             { required: true, message: 'Ingrese un nombre' },
-                            { min: 5, message: 'Debe tener al menos 3 caracteres' },
+                            { min: 5, message: 'Debe tener al menos 5 caracteres' },
                             { max: 30, message: 'No puede superar los 30 caracteres' },
                         ]}
                     >

@@ -19,13 +19,13 @@ function ServicesPage(props) {
                             <div className='info-data'>
                                 <h3>Titulo</h3>
                                 <p>
-                                    data data data data data data data data data data data
-                                    data data data data data data data data data data data
-                                    data data data data data data data data data data data
-                                    data data data data data data data data data data data
-                                    data data data data data data data data data data data
-                                    data data data data data data data data data data data
-                                    data data data data data data data data data data data
+                                Lorem ipsum dolor sit amet consectetur. Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit Lorem ipsum dolor sit amet consectetur. 
+                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit Lorem ipsum dolor sit amet consectetur. 
+                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit Lorem ipsum dolor sit amet consectetur. 
+                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit.
+                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit.
+                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit.
+                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit.
                                 </p>
                             </div>
                         </div>
@@ -36,13 +36,13 @@ function ServicesPage(props) {
                             <div className='info-data'>
                                 <h3>Titulo</h3>
                                 <p>
-                                    data data data data data data data data data data data
-                                    data data data data data data data data data data data
-                                    data data data data data data data data data data data
-                                    data data data data data data data data data data data
-                                    data data data data data data data data data data data
-                                    data data data data data data data data data data data
-                                    data data data data data data data data data data data
+                                Lorem ipsum dolor sit amet consectetur. Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit Lorem ipsum dolor sit amet consectetur. 
+                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit Lorem ipsum dolor sit amet consectetur. 
+                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit Lorem ipsum dolor sit amet consectetur. 
+                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit.
+                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit.
+                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit.
+                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit.
                                 </p>
                             </div>
                         </div>

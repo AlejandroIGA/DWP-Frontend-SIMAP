@@ -42,6 +42,7 @@ function Spaces(props) {
             }
         } catch (error) {
             openNotification('error', "Error al obtener los espacios");
+            setSpaces([]);
         } finally {
             setLoading(false);
         }

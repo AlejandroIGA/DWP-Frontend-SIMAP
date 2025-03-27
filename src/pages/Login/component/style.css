@@ -18,6 +18,16 @@
     background-color: #D5E8D4;
     margin-bottom: 20px;
     margin-top: 20px;
+    overflow: hidden; /* Asegura que nada sobresalga del círculo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle img{
+    width: 80%;
+    height: 80%;
+    object-fit: contain; /* Mantiene la proporción sin deformar */
 }
 
 .form .ant-input,

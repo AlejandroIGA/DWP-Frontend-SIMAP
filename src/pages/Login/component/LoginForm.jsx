@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button, Form, Input, notification, Spin, Modal } from 'antd';
 import authService from "../../../services/authService";
 import { QRCodeSVG } from 'qrcode.react';
+import avatar from '../../../assets/granjero.png'
 
 
 function LoginForm() {
@@ -135,7 +136,9 @@ function LoginForm() {
                     </div>
                 ) : (
                     <div className="form">
-                        <div className="circle"></div>
+                        <div className="circle">
+                            <img src={avatar}></img>
+                        </div>
                         <h2 style={{ color: "#FFF", fontSize: "32px" }}>Iniciar sesión</h2>
                         <Form onFinish={handleSubmit} form={form}>
                             <Form.Item

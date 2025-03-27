@@ -20,7 +20,7 @@ function Notifications(props) {
         });
     };
 
-    let user_id = 85;
+    let user_id = localStorage.getItem('user_id');
 
     async function getNotifications(user_id) {
         setLoading(true);
@@ -28,14 +28,16 @@ function Notifications(props) {
             const response = await notificationService.get(user_id);
             if (typeof response === "string") {
                 openNotification('error', response);
+                setNotifications([])
             } else if (response?.data?.data !== undefined) {
                 setNotifications(response.data.data);
-                openNotification('success', response.data.msg);
             } else {
                 openNotification('error', response.response.data.msg);
+                setNotifications([])
             }
         } catch (error) {
             openNotification('error', error.response.data.msg);
+            setNotifications([])
         } finally {
             setLoading(false);
         }
@@ -47,14 +49,16 @@ function Notifications(props) {
             const response = await notificationService.delete(id);
             if (typeof response === "string") {
                 openNotification('error', response);
-            } else if (response?.data?.data !== undefined) {
-                setNotifications(response.data.data);
+                setNotifications([])
+            } else if (response?.data?.msg !== undefined) {
+                getNotifications(user_id)
                 openNotification('success', response.data.msg);
             } else {
                 openNotification('error', response.response.data.msg);
+                setNotifications([])
             }
         } catch (error) {
-            openNotification('error', "Error al obtener los espacios");
+            openNotification('error', "Error al borrar la notificación");
         } finally {
             setLoading(false);
         }
