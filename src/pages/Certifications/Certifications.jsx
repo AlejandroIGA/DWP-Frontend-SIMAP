@@ -20,15 +20,9 @@ function Certifications(props) {
                                 <img src={ISO9001}></img>
                             </div>
                             <div className='info-data'>
-                                <h3>Titulo</h3>
+                                <h3>ISO9001</h3>
                                 <p>
-                                Lorem ipsum dolor sit amet consectetur. Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit Lorem ipsum dolor sit amet consectetur. 
-                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit Lorem ipsum dolor sit amet consectetur. 
-                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit Lorem ipsum dolor sit amet consectetur. 
-                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit.
-                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit.
-                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit.
-                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit.
+                                Es una norma de gestión de calidad que establece requisitos para optimizar procesos, mejorar la satisfacción del cliente y aumentar la eficiencia operativa. Se basa en un enfoque de mejora continua y gestión por procesos. Su certificación demuestra compromiso con la calidad y la excelencia empresarial.
                                 </p>
                             </div>
                         </div>
@@ -37,15 +31,9 @@ function Certifications(props) {
                                 <img src={ISO27001}></img>
                             </div>
                             <div className='info-data'>
-                                <h3>Titulo</h3>
+                                <h3>ISO27001</h3>
                                 <p>
-                                Lorem ipsum dolor sit amet consectetur. Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit Lorem ipsum dolor sit amet consectetur. 
-                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit Lorem ipsum dolor sit amet consectetur. 
-                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit Lorem ipsum dolor sit amet consectetur. 
-                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit.
-                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit.
-                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit.
-                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit.
+                                Se enfoca en la gestión de seguridad de la información, estableciendo controles para proteger datos sensibles contra amenazas. Incluye evaluación de riesgos, implementación de medidas de seguridad y mejora continua. Su certificación garantiza la confidencialidad, integridad y disponibilidad de la información.
                                 </p>
                             </div>
                         </div>
@@ -54,15 +42,9 @@ function Certifications(props) {
                                 <img src={ISO14001}></img>
                             </div>
                             <div className='info-data'>
-                                <h3>Titulo</h3>
+                                <h3>ISO14001</h3>
                                 <p>
-                                Lorem ipsum dolor sit amet consectetur. Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit Lorem ipsum dolor sit amet consectetur. 
-                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit Lorem ipsum dolor sit amet consectetur. 
-                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit Lorem ipsum dolor sit amet consectetur. 
-                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit.
-                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit.
-                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit.
-                                Aliquet scelerisque lectus molestie massa mus orci risus porttit massa mus orci risus porttit massa mus orci risus porttit.
+                                Regula la gestión ambiental en organizaciones, promoviendo prácticas sostenibles y la reducción del impacto ecológico. Incluye identificación y control de riesgos ambientales, cumplimiento normativo y mejora continua. Su certificación demuestra compromiso con la sostenibilidad y responsabilidad ambiental.
                                 </p>
                             </div>
                         </div>

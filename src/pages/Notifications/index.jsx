@@ -88,7 +88,7 @@ function Notifications(props) {
                                     )
                                     :
                                     (
-                                        <>
+                                        <div>
                                             {notifications.map((item, index) => (
                                                 <Card
                                                     key={index}
@@ -98,7 +98,7 @@ function Notifications(props) {
                                                     onDelete={() => handleDelete(item.id)}
                                                 ></Card>
                                             ))}
-                                        </>
+                                        </div>
                                     )}
                             </>
                         )}

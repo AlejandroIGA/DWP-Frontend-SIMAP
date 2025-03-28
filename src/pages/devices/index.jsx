@@ -38,7 +38,7 @@ function Devices(props) {
 
         ws.current.onopen = () => {
             console.log('WebSocket conectado');
-            openNotification("info", "Esperando datos de los sensores, esto puede demorar hasta 30s. \nPor temas prácticos solo se hace una simulación del primer sensor obtenido de la base de datos, los valores del sensor son refrescados cada 30s")
+            openNotification("info", "Esperando datos de los sensores, esto puede demorar hasta 30s. \nPor temas prácticos solo se hace una simulación del primer sensor obtenido de la base de datos, los valores del sensor son refrescados cada 10s")
             ws.current.send(JSON.stringify({ 
                 device_id: deviceId,
                 user_id: localStorage.getItem('user_id')

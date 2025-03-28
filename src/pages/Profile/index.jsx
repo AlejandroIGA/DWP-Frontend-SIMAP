@@ -70,8 +70,9 @@ function Profile(props) {
     }
 
     function updateData(){
-        setAccountToEdit(accountInfo)
-        setIsModalOpen(true)
+        const accountCopy = {...accountInfo};
+        setAccountToEdit(accountCopy);
+        setIsModalOpen(true);
     }
 
     useEffect(() => {

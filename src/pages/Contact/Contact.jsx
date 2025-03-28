@@ -14,10 +14,7 @@ function Contact(props) {
             <h2>Contáctanos</h2>
             <div className='info'>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur. Aliquet scelerisque lectus molestie massa mus orci risus porttit  massa mus orci risus porttit  massa mus orci risus porttit
-                    Lorem ipsum dolor sit amet consectetur. Aliquet scelerisque lectus molestie massa mus orci risus porttit  massa mus orci risus porttit  massa mus orci risus porttit
-                    Lorem ipsum dolor sit amet consectetur. Aliquet scelerisque lectus molestie massa mus orci risus porttit  massa mus orci risus porttit  massa mus orci risus porttit
-                    Lorem ipsum dolor sit amet consectetur. Aliquet scelerisque lectus molestie massa mus orci risus porttit  massa mus orci risus porttit  massa mus orci risus porttit
+                En <strong>SIMAP</strong>, estamos comprometidos con el futuro de la agricultura a través de soluciones tecnológicas inteligentes y sostenibles. Si tienes preguntas, necesitas asesoría o deseas explorar cómo nuestras herramientas pueden optimizar tus cultivos, ¡nos encantaría escucharte!
                 </p>
                 <div className='info-card'>
                     <div className='image'>

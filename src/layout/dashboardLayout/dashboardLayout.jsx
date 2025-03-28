@@ -12,7 +12,7 @@ function DashboardLayout({ header, nav, content, title = "Prueba" }) {
                 <Col xs={24} sm={24} md={4} lg={4} xl={4} className='nav'>
                     {nav}
                 </Col>
-                <Col xs={24} sm={24} md={20} lg={20} xl={20} className='content'>
+                <Col xs={24} sm={24} md={20} lg={20} xl={20} className='content' style={{overflowY:"auto"}}>
                     <h2>{title}</h2>
                     {content}
                 </Col>

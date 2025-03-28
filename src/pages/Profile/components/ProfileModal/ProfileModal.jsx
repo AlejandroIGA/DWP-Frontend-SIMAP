@@ -80,7 +80,6 @@ function ProfileModal({ isModalOpen, setIsModalOpen, onSubmit, accountToEdit, se
                     >
                         <Select
                             placeholder="Seleccione una opción"
-                            allowClear
                         >
                             <Option value="MX">MX</Option>
                         </Select>
@@ -110,7 +109,7 @@ function ProfileModal({ isModalOpen, setIsModalOpen, onSubmit, accountToEdit, se
                             { required: true, message: "Ingrese su correo" }
                         ]}
                     >
-                        <Input placeholder="Ingrese su correo" />
+                        <Input disabled placeholder="Ingrese su correo" />
                     </Form.Item>
                 </Form>
 

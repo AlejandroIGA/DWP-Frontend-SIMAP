@@ -201,20 +201,12 @@ function LoginForm() {
                         style={{ background: "#FFF", color: "#000", margin: '10px 0' }}
 
                     />
-                    <button
+                    <Button
                         type="submit"
-                        style={{
-                            padding: '8px 16px',
-                            background: '#1890ff',
-                            color: 'white',
-                            border: 'none',
-                            borderRadius: '4px',
-                            cursor: 'pointer',
-                            margin: 0
-                        }}
+                        style={{margin: 0}}
                     >
                         Validar
-                    </button>
+                    </Button>
                 </form>
             </Modal>
             <Modal
@@ -222,63 +214,65 @@ function LoginForm() {
                 open={isModalOpen2}
                 onCancel={handleCancel2}
                 footer={[]}
+                width={400}
+                className="recovery-modal"
             >
-                <form onSubmit={pswRecovery} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <label>Ingresa tu correo</label>
-                    <input
-                        disabled={!(step == 'email')}
+                {/* Formulario de email */}
+                <form
+                    onSubmit={pswRecovery}
+                    className={`step-form ${step === 'email' ? 'active' : ''}`}
+                >
+                    <label className="form-label">Ingresa tu correo</label>
+                    <Input
+                        disabled={!(step === 'email')}
                         required
                         type="email"
                         name="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        style={{ background: "#FFF", color: "#000", margin: '10px 0' }}
+                        placeholder="tu@email.com"
                     />
-                    <button
-                        hidden={!(step == 'email')}
-                        type="submit"
-                        style={{
-                            padding: '8px 16px',
-                            background: '#1890ff',
-                            color: 'white',
-                            border: 'none',
-                            borderRadius: '4px',
-                            cursor: 'pointer',
-                            margin: 0
-                        }}
+                    <Button
+                        hidden={!(step === 'email')}
+                        type="primary"
+                        htmlType="submit"
+                        style={{margin:"0"}}
                     >
                         Enviar
-                    </button>
+                    </Button>
                 </form>
-                <form onSubmit={pswRecovery} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <label>Ingresa tu código de seguridad</label>
-                    <input
-                        disabled={!(step == 'code')}
+
+                {/* Formulario de código */}
+                <form
+                    onSubmit={pswRecovery}
+                    className={`step-form ${step === 'code' ? 'active' : ''}`}
+                >
+                    <label className="form-label">Ingresa tu código de seguridad</label>
+                    <Input
+                        disabled={!(step === 'code')}
                         required
                         type="text"
                         name="code"
                         value={code}
                         onChange={(e) => setCode(e.target.value)}
-                        style={{ background: "#FFF", color: "#000", margin: '10px 0' }}
+                        placeholder="Código de verificación"
                     />
-                    <button
-                        hidden={!(step == 'code')}
-                        type="submit"
-                        style={{
-                            padding: '8px 16px',
-                            background: '#1890ff',
-                            color: 'white',
-                            border: 'none',
-                            borderRadius: '4px',
-                            cursor: 'pointer',
-                            margin: 0
-                        }}
+                    <Button
+                        hidden={!(step === 'code')}
+                        type="primary"
+                        htmlType="submit"
+                        style={{margin:"0"}}
                     >
                         Validar
-                    </button>
+                    </Button>
                 </form>
-                <Form form={form} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <label>Ingresa tu nueva contraseña</label>
+
+                {/* Formulario de contraseña */}
+                <Form
+                    form={form}
+                    className={`step-form ${step === 'psw' ? 'active' : ''}`}
+                >
+                    <label className="form-label">Ingresa tu nueva contraseña</label>
                     <Form.Item
                         name="password"
                         rules={[
@@ -291,29 +285,29 @@ function LoginForm() {
                             },
                         ]}
                     >
-                        <Input.Password 
-                        disabled={!(step == 'psw')}
-                        onChange={(e) => setNewPsw(e.target.value)}
-
+                        <Input.Password
+                            disabled={!(step === 'psw')}
+                            onChange={(e) => setNewPsw(e.target.value)}
+                            placeholder="Mínimo 10 caracteres"
                         />
                     </Form.Item>
-                    <button
-                        hidden={!(step == 'psw')}
-                        type="submit"
-                        style={{
-                            padding: '8px 16px',
-                            background: '#1890ff',
-                            color: 'white',
-                            border: 'none',
-                            borderRadius: '4px',
-                            cursor: 'pointer',
-                            margin: 0
-                        }}
+                    <Button
+                        hidden={!(step === 'psw')}
+                        type="primary"
+                        htmlType="submit"
                         onClick={pswRecovery}
+                        style={{margin:"0"}}
                     >
                         Enviar
-                    </button>
+                    </Button>
                 </Form>
+
+                {/* Indicador de pasos */}
+                <div className="step-indicator">
+                    <div className={`step-dot ${step === 'email' ? 'active' : ''}`}></div>
+                    <div className={`step-dot ${(step === 'code' || step === 'psw') ? 'active' : ''}`}></div>
+                    <div className={`step-dot ${step === 'psw' ? 'active' : ''}`}></div>
+                </div>
             </Modal>
         </>
 
