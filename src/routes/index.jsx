@@ -1,4 +1,3 @@
-// src/routes/AppRoutes.js
 import React from 'react';
 import { useRoutes } from 'react-router-dom';
 import Devices from '../pages/devices';
@@ -13,7 +12,7 @@ import Crops from '../pages/Crops';
 import Notifications from '../pages/Notifications';
 import Profile from '../pages/Profile';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
-import ProtectedRoute from './ProtectedRoutes'; // Asegúrate de que la ruta de importación sea correcta
+import ProtectedRoute from './ProtectedRoutes';
 
 const AppRoutes = () => {
     let routes = useRoutes([
@@ -24,7 +23,7 @@ const AppRoutes = () => {
         { path: '/registrarse', element: <Register /> },
         { path: '/certificaciones', element: <Certifications /> },
         {
-            element: <ProtectedRoute />, // Protege todas las rutas dentro de este bloque
+            element: <ProtectedRoute />,
             children: [
                 { path: '/panel/dispositivos', element: <Devices /> },
                 { path: '/panel/espacios', element: <Spaces /> },

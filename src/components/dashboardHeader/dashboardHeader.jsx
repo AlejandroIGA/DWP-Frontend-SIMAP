@@ -1,5 +1,5 @@
 import { Col, Row } from 'antd';
-import React, { useState, useEffect } from 'react'; // Añade useEffect
+import React, { useState, useEffect } from 'react';
 import { LogoutOutlined } from '@ant-design/icons';
 import './style.css';
 import sun from '../../assets/sun.png';
@@ -25,12 +25,12 @@ function DashboardHeader() {
     
         const fetchWeatherWithDelay = async () => {
             await getWeather();
-            timeoutId = setTimeout(fetchWeatherWithDelay, 90000); // Vuelve a llamarse después de 90s
+            timeoutId = setTimeout(fetchWeatherWithDelay, 90000);
         };
     
-        fetchWeatherWithDelay(); // Inicia el ciclo
+        fetchWeatherWithDelay(); 
     
-        return () => clearTimeout(timeoutId); // Limpieza
+        return () => clearTimeout(timeoutId); 
     }, []);
 
     async function getWeather(){

@@ -202,7 +202,7 @@ function LoginForm() {
 
                     />
                     <Button
-                        type="submit"
+                        htmlType="submit"
                         style={{margin: 0}}
                     >
                         Validar

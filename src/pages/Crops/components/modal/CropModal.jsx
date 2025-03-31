@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './style.css'
 import { Modal, Button, Form, Input, Select, InputNumber } from 'antd';
-import { CropTwoTone } from '@mui/icons-material';
 
 function CropModal({ isModalOpen, setIsModalOpen, onSubmit, cropToEdit, setCropToEdit, spaces }) {
     const [form] = Form.useForm();

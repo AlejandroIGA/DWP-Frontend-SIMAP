@@ -19,8 +19,6 @@ function ProfileModal({ isModalOpen, setIsModalOpen, onSubmit, accountToEdit, se
         form.resetFields();
     }
 
-
-
     useEffect(() => {
         if (accountToEdit) {
             form.setFieldsValue({

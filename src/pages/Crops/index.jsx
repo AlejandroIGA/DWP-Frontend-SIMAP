@@ -33,31 +33,6 @@ function Crops(props) {
 
     let user_id = localStorage.getItem('user_id');
 
-    let cropTest = [{
-        name: "cultivo 1",
-        crop: "Jitomate",
-        tempMin: 25,
-        tempMax: 35,
-        humMin: 40,
-        humMax: 50,
-        humFmin: 35,
-        humFmax: 50,
-        type: "Sombra",
-        id: 1
-    },
-    {
-        name: "cultivo 2",
-        crop: "Lechuga",
-        tempMin: 25,
-        tempMax: 35,
-        humMin: 40,
-        humMax: 50,
-        humFmin: 35,
-        humFmax: 50,
-        type: "Sombra",
-        id: 2
-    }]
-
     async function getSpaces(user_id) {
         setLoading(true);
         try {

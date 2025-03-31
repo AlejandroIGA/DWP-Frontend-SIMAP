@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu } from 'antd';
 import {
-    UserOutlined,      // Ícono para "Cuenta"
-    HomeOutlined,      // Ícono para "Espacios"
-    DeploymentUnitOutlined, // Ícono para "Dispositivos"
+    UserOutlined,      
+    HomeOutlined,      
+    DeploymentUnitOutlined, 
     BellOutlined,
-    SunOutlined,      // Ícono para "Notificaciones"
+    SunOutlined,      
 } from '@ant-design/icons';
 import './style.css';
 

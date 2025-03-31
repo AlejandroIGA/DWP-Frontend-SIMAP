@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Row } from 'antd';
 import './style.css';
 
-function DashboardLayout({ header, nav, content, title = "Prueba" }) {
+function DashboardLayout({ header, nav, content, title }) {
     return (
         <div className='layout-container'>
             <Row>
